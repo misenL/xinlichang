@@ -1,0 +1,71 @@
+/* pages/orderInfoReport/index.wxss */
+
+.container {
+  background: rgba(240, 245, 251, 1)
+}
+.font__color-grey {
+  color: rgba(0, 0, 0, 0.45);
+  justify-self: end;
+}
+.font__color-orange {
+  color: rgba(230, 126, 34, 1)
+}
+.font__color-red {
+  color: rgba(231, 76, 60, 1)
+}
+.font__color-blue {
+  color: rgba(0, 122, 255, 1)
+}
+.block__grid-4 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1.5fr;
+  align-self: center;
+  align-items: center;
+  justify-self: start;
+}
+.block__grid-5 {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr 1fr 1fr;
+  align-self: center;
+  align-items: center;
+  justify-self: start;
+}
+.grid-across {
+  grid-column-start: 2;
+  grid-column-end: 5
+}
+.block__list-style {
+  padding: 6px 0;
+}
+.order__num {
+  padding: 10px 0;
+  margin: 0 16px;
+  border-bottom: 1px solid rgba(230, 230, 230, 1)
+}
+.order__num,
+.order__block {
+  background: rgba(255, 255, 255, 1);
+  font-size: 14px;
+}
+.info__style {
+  padding: 8px 0 12px 0;
+  margin-bottom: 8px;
+}
+
+
+.confirm__buttom {
+  font-size: 16px;
+  border-radius: 4px;
+  background: rgba(255, 202, 75, 1);
+  width: 320px;
+  height: 44px;
+  line-height: 44px;
+  text-align: center;
+  margin: 24px auto 0;
+  color: rgba(139, 87, 42, 1);
+}
+.color-blue {
+  color: rgba(0, 122, 255, 1);
+  border: 1px solid rgba(0, 122, 255, 1)!important;
+  background: rgba(255, 255, 255, 1)!important;
+}

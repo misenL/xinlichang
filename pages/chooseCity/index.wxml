@@ -1,0 +1,48 @@
+<!--index.wxml-->
+<!-- 引入自定义导航 -->
+<nav-bar navbar-data='{{nvabarData}}'></nav-bar>
+<view class="container" style="margin-top: {{ height }}px">
+  <view class="city-page">
+      <scroll-view class="city-scrollView" scroll-y="true" scroll-into-view="{{scrollTopId}}"
+          scroll-with-animation="true" enable-back-to-top="true">
+          <view class="city-item" id="current">
+            <view style="color:rgba(117, 117, 117, 1);font-size:13px" class="city-sub-item city-py">当前定位城市</view>
+              <view class="city-sub-item city-text v-flex city-sub-location">
+                  <image style="margin-right:5px" src="../../assets/icon/LBS.png" mode="widthFix" class="location-image"></image>
+                  <text bindtap="selectCity" style="margin-right:auto;margin-left:0" class="city-sub-text">{{locationCity}}</text>
+                  <image src="../../assets/icon/location.png" mode="widthFix" class="location-image"></image>
+                  <text style="color:rgba(0, 0, 0, 0.5);margin-left:0" class="city-sub-text" bindtap="handleClickLocation">重新定位</text>
+              </view>
+          </view>
+
+          <!-- 添加的热门城市，现在是写死的 -->
+          <view wx:if="{{hostCity.length > 0}}">
+            <view style="color:rgba(117, 117, 117, 1);font-size:13px" class="city-sub-item city-py">热门城市</view>
+            <view class="host-city">
+                <view wx:for="{{hostCity}}" wx:for-index="index" wx:key="key" 
+                data-full="{{item}}" bindtap="selectCity" wx:for-item="item">{{item.shortname}}</view>
+            </view>
+          </view>
+
+          <view class="city-item listGroup" wx:for="{{cityList}}" wx:for-index="idx" wx:for-item="group" wx:key="key">
+              <view class="city-sub-item city-py" id="{{idx}}">{{idx}}</view>
+              <view class="city-sub-item city-text" wx:for="{{group}}" wx:key="key" 
+                  data-full="{{item}}" bindtap="selectCity">{{item.shortname}}</view>
+          </view>
+      </scroll-view>
+      
+      <!-- 右侧字母表 -->
+      <view class="city-py-label">
+          <view wx:for="{{cityPy}}" wx:key="index" data-id="{{item}}" data-index="{{index}}"
+              bindtouchstart="handleTouchStart" bindtouchend="handleTouchEnd" bindtouchmove="handleTouchMove"
+              class="{{currentIndex==index?'text-primary':''}}">{{item}}</view>
+      </view>
+      
+      <!-- 当前触摸的字母 -->
+      <view class="v-flex v-shadow city-single-py" wx:if="{{hidden}}">
+          <view>{{scrollTopId}}</view>
+      </view>
+  </view>
+
+
+</view>

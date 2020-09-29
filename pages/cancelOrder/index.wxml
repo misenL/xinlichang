@@ -1,0 +1,106 @@
+<!--pages/cancelOrder/index.wxml-->
+<nav-bar navbar-data='{{nvabarData}}'></nav-bar>
+<view class="container" style="margin-top: {{ height }}px">
+  <!-- 客户信息 -->
+  <view class="order__block">
+    <view class="order__num">
+      <text class="font__color-grey">订单编号：</text>
+      <text>{{orderInfo.order_sn}}</text>
+    </view>
+    <view class="info__style">
+      <view class="block__grid-4 block__list-style">
+        <text class="font__color-grey">订单进度：</text>
+        <text class="font__color-orange grid-across">{{speedArr[(orderInfo.order_state)/10]}}</text>
+      </view>
+      <view class="block__grid-4 block__list-style">
+        <text class="font__color-grey">客户姓名：</text>
+        <text>{{orderInfo.order_report.customer_name}}</text>
+        <text class="font__color-grey">客户性别：</text>
+        <text>{{orderInfo.order_report.customer_sex==1?'男':'女'}}</text>
+      </view>
+      <view class="block__grid-4 block__list-style">
+        <text class="font__color-grey">身份证号：</text>
+        <text class="grid-across">{{orderInfo.order_report.customer_card}}</text>
+      </view>
+      <view class="block__grid-4 block__list-style">
+        <text class="font__color-grey">手机号码：</text>
+        <text class="grid-across">{{orderInfo.order_report.customer_phone}}</text>
+      </view>
+    </view>
+  </view>
+  <view class="order__block">
+    <!-- 楼盘信息 -->
+    <view class="info__style">
+      <view class="block__grid-4 block__list-style">
+        <text class="font__color-grey">经纪姓名：</text>
+        <text>{{orderInfo.agent.real_name}}</text>
+        <text class="font__color-grey">驻场姓名：</text>
+        <text>{{orderInfo.order_deal.stay.real_name}}</text>
+      </view>
+      <view class="block__grid-4 block__list-style">
+        <text class="font__color-grey">楼盘区域：</text>
+        <text class="grid-across">{{orderInfo.order_report.city.shortname}} {{orderInfo.order_report.area.shortname}}</text>
+      </view>
+      <view class="block__grid-4 block__list-style">
+        <text class="font__color-grey">认购楼盘：</text>
+        <text class="grid-across">{{orderInfo.order_report.build.name}}</text>
+      </view>
+      <!-- 这是取消成交的 -->
+      <view wx:if="{{cancelType == 0}}">
+        <view class="block__grid-5 block__list-style">
+          <text class="font__color-grey">成交单元：</text>
+          <text>{{orderInfo.order_deal.unit||'/'}}</text>
+          <text class="font__color-grey">单元面积：</text>
+          <text>{{orderInfo.order_deal.area+'m²'||'/'}}</text>
+        </view>
+        <view class="block__grid-5 block__list-style">
+          <text class="font__color-grey">认购总价：</text>
+          <text>{{orderInfo.order_deal.subscribe_amount+'万'||'/'}}</text>
+          <text class="font__color-grey">成交总价：</text>
+          <text>{{orderInfo.order_deal.deal_amount+'万'||'/'}}</text>
+        </view>
+        <view class="block__grid-4 block__list-style">
+          <text class="font__color-grey">成交时间：</text>
+          <text class="grid-across">{{orderInfo.order_deal.created_at}}</text>
+        </view>
+      </view>
+      <!-- 这是取消认购的 -->
+      <view wx:if="{{cancelType == 1}}">
+        <view class="block__grid-5 block__list-style">
+          <text class="font__color-grey">认购单元：</text>
+          <text>{{orderInfo.order_subscribe.unit||'/'}}</text>
+          <text class="font__color-grey">单元面积：</text>
+          <text>{{orderInfo.order_subscribe.area+'m²'||'/'}}</text>
+        </view>
+        <view class="block__grid-5 block__list-style">
+          <text class="font__color-grey">认购总价：</text>
+          <text>{{orderInfo.order_subscribe.total_amount+'万'||'/'}}</text>
+        </view>
+        <view class="block__grid-4 block__list-style">
+          <text class="font__color-grey">认购时间：</text>
+          <text class="grid-across">{{orderInfo.order_subscribe.created_at}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 附件上传 -->
+  <view class="order__block info__style">
+    <view class="block__title">
+      <text class="font__h1">相关附件</text>
+      <text>* 至少上传1张图片，最多上传10张图片</text>
+    </view>
+    <van-uploader max-count="10" file-list="{{ fileList }}" bind:after-read="afterRead" bind:delete="deleteImage" />
+  </view>
+  <view class="order__block info__style info__bottom">
+    <view class="block__title">
+      <text class="font__h1">审批备注</text>
+    </view>
+    <textarea placeholder="请输入备注信息（最多输入200个中文字符）" value='{{remarks}}' bindinput="bindremarks"></textarea>
+  </view>
+  <view class="bottom__operation">
+    <view bindtap="tapcancel">取消</view>
+    <view class="button-red" bindtap="tapConfirm">提交审批</view>
+  </view>
+  <van-toast id="van-toast" />
+</view>

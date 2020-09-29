@@ -1,0 +1,29 @@
+<view class='nav-wrap' style='height: {{height*2 + 25}}px;'>
+    <!-- 导航栏 中间的标题 -->
+  <view class='nav-title' style='line-height: {{height*2 + 44}}px;'>{{navbarData.title}}</view>
+  <view class='nav-title nav__tabs' style='line-height: {{height*2 + 44}}px; top: {{height}}px' wx:if="{{navbarData.userType==3 || navbarData.userType==4}}">
+    <van-tabs color="rgba(139, 87, 42, 1)" line-width="25" active="{{ active }}" bind:change="onChange">
+      <van-tab title="我审批的" />
+      <van-tab title="我的订单" />
+    </van-tabs>
+  </view>
+  <view style='display: flex; justify-content: space-around;flex-direction: column'>
+      <!-- 导航栏  左上角的返回按钮 和home按钮
+      其中wx:if='{{navbarData.showCapsule}}' 是控制左上角按钮的显示隐藏，首页不显示 -->
+    <view class='nav-capsule nav__background' style='height: 28px;margin-top:{{(height*2+14)/2}}px' wx:if='{{navbarData.showCapsule === 1}}'>
+       <!-- 左上角的返回按钮，wx:if='{{!share}}'空制返回按钮显示
+       从分享进入小程序时 返回上一级按钮不应该存在 -->
+      <view class="nav__retrun" bindtap='_navback' wx:if='{{!share}}'>
+        <image src='/assets/icon/navRetrun.png' mode='aspectFill' class='back-pre'></image>
+      </view>
+      <view class='navbar-v-line' wx:if='{{!share}}'></view>
+      <view bindtap='_backhome'>
+        <image src='/assets/icon/navHome.png' mode='aspectFill' class='back-home'></image>
+      </view>
+    </view>
+    <view class='nav-capsule nav__loc' style='height: 28px;margin-top:{{(height*2+14)/2}}px' wx:if='{{navbarData.showCapsule === 2}}' bindtap="bindLoc">
+      <text>{{navbarData.shortname}}</text>
+      <van-icon name="arrow-down" />
+    </view>
+  </view>
+</view>

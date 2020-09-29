@@ -1,0 +1,163 @@
+.van-image {
+  display: block!important;
+}
+.build__state{
+  font-size: 11px;
+  color: rgba(0, 0, 0, .65);
+  display: block;
+  width: auto;
+}
+.build__list {
+  background: rgb(255, 255, 255);
+  width: 100vw;
+  padding: 12px;
+  border-bottom: 1px solid #F0F5FB
+}
+.build__info {
+  display: flex;
+  justify-content: flex-start;
+}
+.info__text {
+  padding-left: 12px;
+}
+.build__name {
+  font-size: 16px;
+  font-family: '苹方-简 常规体';
+  margin-right: 10px
+}
+.build__money {
+  font-size: 16px;
+  color: #E74C3C;
+  display: block;
+  margin-top: 2px;
+}
+.build__loc {
+  font-size: 11px;
+  color: rgba(0, 0, 0, .65);
+  display: block;
+  width: auto;
+  margin-top: 8px;
+}
+.build__tag {
+ display: flex;
+ justify-content: flex-start;
+ flex-wrap: wrap;
+}
+.build__tag view {
+  margin: 5px 10px 2px 0;
+}
+.build__tag text {
+  padding: 2px 5px;
+  font-size: 11px;
+}
+
+/* 标签颜色匹配 */
+/* 住宅 */
+.tag_view_0 text {
+  border: 1px solid rgba(39, 174, 96, 1);
+}
+.text_name_0 {
+  border-radius: 3px 0 0 3px;
+  background: rgba(39, 174, 96, 1);
+  color: rgba(255, 255, 255, 1)
+}
+.text_num_0 {
+  border-radius: 0 3px 3px 0;
+  background: rgba(39, 174, 96, 0.25);
+  color: rgba(39, 174, 96, 1);
+}
+/* 公寓 */
+.tag_view_1 text {
+  border: 1px solid rgba(243, 156, 18, 1);
+}
+.text_name_1 {
+  border-radius: 3px 0 0 3px;
+  background: rgba(243, 156, 18, 1);
+  color: rgba(255, 255, 255, 1)
+}
+.text_num_1 {
+  border-radius: 0 3px 3px 0;
+  background: rgba(243, 156, 18, 0.25);
+  color: rgba(243, 156, 18, 1);
+}
+/* 商铺 */
+.tag_view_2 text {
+  border: 1px solid rgba(155, 89, 182, 1);
+}
+.text_name_2 {
+  border-radius: 3px 0 0 3px;
+  background: rgba(155, 89, 182, 1);
+  color: rgba(255, 255, 255, 1)
+}
+.text_num_2 {
+  border-radius: 0 3px 3px 0;
+  background: rgba(155, 89, 182, 0.25);
+  color: rgba(155, 89, 182, 1);
+}
+/* 写字楼 */
+.tag_view_3 text {
+  border: 1px solid rgba(74, 144, 226, 1);
+}
+.text_name_3 {
+  border-radius: 3px 0 0 3px;
+  background: rgba(74, 144, 226, 1);
+  color: rgba(255, 255, 255, 1)
+}
+.text_num_3 {
+  border-radius: 0 3px 3px 0;
+  background: rgba(74, 144, 226, 0.25);
+  color: rgba(74, 144, 226, 1);
+}
+/* 底商 */
+.tag_view_4 text {
+  border: 1px solid rgba(231, 76, 60, 1);
+}
+.text_name_4 {
+  border-radius: 3px 0 0 3px;
+  background: rgba(231, 76, 60, 1);
+  color: rgba(255, 255, 255, 1)
+}
+.text_num_4 {
+  border-radius: 0 3px 3px 0;
+  background: rgba(231, 76, 60, 0.25);
+  color: rgba(231, 76, 60, 1);
+}
+
+.commission__tag {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: 14px;
+  margin-top: 10px;
+  /* margin: 8px 0; */
+}
+.commission__label {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.commission__pla,
+.commission__ord {
+  margin: 10px 10px 0 0;
+  display: flex;
+}
+.commission__pla text,
+.commission__ord text {
+  padding: 2px 5px;
+  font-size: 11px;
+  line-height: 6px;
+  height: 18px;
+}
+.pla1, .ord1 {
+  border-radius: 3px 0 0 3px;
+  color: rgba(255, 255, 255, 1);
+  font-family: '苹方-简 常规体';
+}
+.pla2, .ord2 {
+  border-radius: 0 3px 3px 0;
+  font-family: '苹方-简 中黑体';
+}
+
+
+

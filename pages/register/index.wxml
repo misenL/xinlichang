@@ -1,0 +1,105 @@
+<!-- pages/login/index.wxml -->
+<!-- 引入自定义导航 -->
+<nav-bar navbar-data='{{nvabarData}}'></nav-bar>
+<view class="container" style="margin-top: {{ height }}px">
+  <van-notice-bar color="rgba(208, 2, 27, 1)" backgroundColor="rgba(251, 246, 246, 1)" left-icon="https://s1.ax1x.com/2020/05/27/tAv4gJ.png" text="填写有误将会影响佣金结算及客户形象" />
+  <!-- 个人信息 -->
+  <view class="info__style info__user">
+    <view class="info__title">
+      <text>个人信息</text>
+      <text class="title__label">* 以下均为必填项</text>
+    </view>
+    <view class="info__content user__content">
+      <van-cell-group>
+        <van-field value="{{ username }}" clearable label="真实姓名" placeholder="请输入真实姓名" input-align="right" data-name="{{'username'}}" bind:change="onChange" />
+        <van-field value="{{ pho }}" clearable label="手机号码" placeholder="请输入手机号码" input-align="right" data-name="{{'pho'}}" bind:change="onChange" wx:if="{{editType == ''}}" />
+        <van-field value="{{ verCode }}" clearable label="验证码" placeholder="请输入验证码" input-align="right" data-name="{{'verCode'}}" bind:change="onChange" use-button-slot wx:if="{{editType == ''}}">
+          <van-button wx:if="{{isTime===30}}" bind:click="clickVeriImg" slot="button" size="small" type="primary">
+            {{isVerify}}
+          </van-button>
+          <van-button disabled wx:else bind:click="clickVeriImg" slot="button" size="small" type="primary">
+            {{isTime}}s
+          </van-button>
+        </van-field>
+        <van-field value="{{ wechat }}" label="关联微信" readonly input-align="right" border="{{ false }}" wx:if="{{editType == ''}}" use-button-slot>
+          <button wx:if="{{wechat===''}}" class="weChat__login" open-type="getUserInfo" slot="button" bindgetuserinfo="tapRelaWechat">
+            点击绑定
+            <van-icon slot="right-icon" name="arrow" />
+          </button>
+        </van-field>
+      </van-cell-group>
+    </view>
+  </view>
+  <!-- <van-popup show="{{ imgCodeShow }}" bind:close="onClose">
+    <image style="width: 230px; height: 160px" src="{{codeImgSrc}}"></image>
+    <van-field value="{{ imgCode }}" clearable placeholder="请输入图中验证码" input-align="right" data-name="{{'imgCode'}}" bind:change="onChange" use-button-slot>
+      <van-button bind:click="clickVeriImg" slot="button" size="small" type="primary">
+        确认
+      </van-button>
+    </van-field>
+  </van-popup> -->
+  <van-toast id="van-toast" />
+  <!-- 实名认证 -->
+  <view class="info__style info__real" wx:if="{{editType == ''}}">
+    <view class="info__title">
+      <text>实名认证</text>
+      <text class="title__label">* 以下均为必填项</text>
+    </view>
+    <view class="info__content user__content">
+      <van-field value="{{ idnum }}" clearable label="证件号码" placeholder="请输入证件号码" input-align="right" data-name="{{'idnum'}}" bind:change="onChange" />
+      <view class="user__uploader" bindtap="bindtapUp1" wx:if="{{is_show!==0}}">
+        <text>身份证照（人像照）</text>
+        <text style="color:rgba(0, 0, 0, 0.45);margin-left:auto">重新上传</text>
+        <van-icon slot="right-icon" name="arrow" />
+      </view>
+      <image wx:if="{{idcar1!==''}}" src="{{idcar1}}"></image>
+      <view class="user__uploader" bindtap="bindtapUp2" wx:if="{{is_show!==0}}">
+        <text>身份证照（国徽照）</text>
+        <text style="color:rgba(0, 0, 0, 0.45);margin-left:auto">重新上传</text>
+        <van-icon slot="right-icon" name="arrow" />
+      </view>
+      <image wx:if="{{idcar2!==''}}" src="{{idcar2}}"></image>
+      <view class="user__uploader" bindtap="bindtapUp3" wx:if="{{is_show!==0}}">
+        <text>手持证照（人证照）</text>
+        <text style="color:rgba(0, 0, 0, 0.45);margin-left:auto">重新上传</text>
+        <van-icon slot="right-icon" name="arrow" />
+      </view>
+      <image wx:if="{{idcar3!==''}}" src="{{idcar3}}"></image>
+    </view>
+  </view>
+  <!-- 职业信息 -->
+  <view class="info__style info__occu">
+    <view class="info__title">
+      <text>职业信息</text>
+      <text class="title__label">* 以下信息将公开给潜在客户</text>
+    </view>
+    <view class="info__content occu__content">
+      <view class="occu__uploader" style="width:89vw" bindtap="bindtapUp4">
+        <image style="background: #DFDFDF" src="{{idcar4}}"></image>
+        <text>职业头像</text>
+        <text style="color:rgba(0, 0, 0, 0.45);margin-left:auto">重新上传</text>
+        <van-icon slot="right-icon" name="arrow" />
+      </view>
+      <van-field value="{{ lic }}" clearable label="经纪人牌照" placeholder="请输入经纪人牌照" input-align="right" data-name="{{'lic'}}" bind:change="onChange" />
+      <van-field value="{{ cyears }}" clearable label="从业年限" placeholder="请选择从业年限" input-align="right" readonly bindtap="bindTapYears">
+        <van-icon slot="right-icon" name="arrow" />
+      </van-field>
+      <van-action-sheet class="res__sheet" show="{{ yesarShow }}" actions="{{ occuActions }}" bind:close="onActionYearsClose" bind:select="onActionYearsSelect" />
+    </view>
+  </view>
+  <!-- 银行账户 -->
+  <view class="info__style info__bank">
+    <view class="info__title">
+      <text>银行账户</text>
+      <text class="title__label">（本人银联借记卡，非必填）</text>
+    </view>
+    <view class="info__content bank__content">
+      <van-field value="{{ bankName }}" clearable label="银行名称" placeholder="请选择银行" input-align="right" readonly bindtap="bindTapBank">
+        <van-icon slot="right-icon" name="arrow" />
+      </van-field>
+      <van-field value="{{ bankID }}" clearable label="银行卡号" placeholder="请输入银行卡号" input-align="right" data-name="{{'bankID'}}" bind:change="onChange" />
+      <van-action-sheet class="res__sheet" show="{{ bankShow }}" actions="{{ bankActions }}" bind:close="onActionBankClose" bind:select="onActionBankSelect" />
+    </view>
+  </view>
+  <view class="submit__button" bindtap="tapConfirm">提交审核</view>
+</view>

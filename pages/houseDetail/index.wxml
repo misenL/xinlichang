@@ -1,0 +1,61 @@
+<!--houseDetail.wxml-->
+<!-- 引入自定义导航 -->
+<nav-bar navbar-data='{{nvabarData}}'></nav-bar>
+<view class="container" style="margin-top: {{ height }}px">
+  <view class="house__detail">
+    <view class="house__info">
+      <!-- 轮播图 -->
+      <view class="banner">
+        <swiper style="height:210px" indicator-dots="{{true}}" indicator-color="{{indicaColor}}" indicator-active-color="{{activeColor}}" autoplay="{{true}}">
+          <swiper-item wx:for="{{houseDetailData.household.slides_image}}" wx:for-item="item" wx:for-index="idx" wx:key="id">
+            <image src="{{item}}" class="slide_imag" data-img-url="{{item}}" bindtap="tapPreviewImg" />
+          </swiper-item>
+        </swiper>
+      </view>
+      <view style="padding:15px">
+        <view class="house__name">
+          <text>{{houseDetailData.household.house_type.name}}{{houseDetailData.household.office}}厅{{houseDetailData.household.kitchen}}厨{{houseDetailData.household.toilet}}卫</text>
+          <van-tag wx:if="{{houseDetailData.household.state==1}}">未开盘</van-tag>
+          <van-tag type="primary" wx:if="{{houseDetailData.household.state==2}}">在售</van-tag>
+          <van-tag wx:if="{{houseDetailData.household.state==3}}">售罄</van-tag>
+        </view>
+        <view class="house__money">
+          <text>约{{houseDetailData.household.money}}万/套</text>
+        </view>
+        <view class="info__list">
+          <view><text class="list__name">建筑面积：</text><text>{{houseDetailData.household.area}}m²</text></view>
+          <view style="grid-column-start: 2;grid-column-end: 3;"><text class="list__name">物业类型：</text><text>{{houseDetailData.house_type[0].data[0].build_type.name}}</text></view>
+          <view style="grid-column-start: 1;grid-column-end: 2;"><text class="list__name">朝向：</text><text>{{houseDetailData.household.direction}}</text></view>
+          <view bindtap="tapGoBuild" style="grid-column-start: 1;grid-column-end: 2;"><text class="list__name">所属楼盘：</text><text>{{houseDetailData.household.build.name}}</text></view>
+          <view bindtap="tapGoBuild" style="grid-column-start: 3;grid-column-end: 4;justify-items:end">
+            <!-- <image src="../../assets/icon/arrowRight.png"></image> -->
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="house__list">
+      <view class="list__top" bindtap="tapMoreHouse">
+        <view style="font-size:18px">本楼盘其他户型</view>
+        <view><text>更多户型</text><image src="../../assets/icon/arrowRight.png"></image></view>
+      </view>
+      <view class="list__tabs">
+        <van-tabs sticky offset-top="{{height}}" swipe-threshold="4" color="rgba(139, 87, 42, 1)" line-width="25" swipeable="true" animated="true">
+          <van-tab title="{{item.name}}({{item.nums}})" wx:for="{{houseDetailData.house_type}}" wx:for-item="item" wx:for-index="idx" wx:key="id">
+            <house-list wx:for="{{item.data}}" wx:for-item="itemLi" wx:for-index="idxLi" wx:key="id" houseData="{{itemLi}}" />
+          </van-tab>
+        </van-tabs>
+      </view>
+    </view>
+  </view>
+</view>
+<!-- 图片预览  //scale-area -->
+<van-popup z-index="1000" show="{{ previewImg }}" custom-style="preview__popup" bind:close="onClosePreview">
+    <movable-area scale-area class="movable-container"  bindtap="onClosePreview"> 
+        <movable-view  direction="all" class="movable-image" bindscale="setScale" out-of-bounds scale scale-min="0.5" scale-max="1" scale-value="{{scale}}">
+          <image class="preview__img"  src="{{previewImgUrl}}"></image>
+        </movable-view>
+    </movable-area>
+</van-popup>
+<bottom-sticky bsticky-data='{{bstickyData}}' />
+
+

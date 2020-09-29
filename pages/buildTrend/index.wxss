@@ -1,0 +1,57 @@
+/* houseList */
+
+.container {
+  background: rgba(240, 245, 251, 1);
+}
+.house__list {
+}
+.trend__ul {
+}
+.trend__li {
+  font-size: 14px;
+  color: rgba(0, 0, 0, 1);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: rgba(255, 255, 255, 1);
+  margin-bottom: 8px;
+  padding: 0 15px 15px;
+}
+.trend__ul :last-child {
+  border-bottom: none;
+}
+.li__title {
+  padding-bottom: 5px;
+}
+.li_content_images {
+  display: flex;
+  flex-wrap:wrap;
+  justify-content: space-around;
+  margin-top: 8px;
+}
+.li_content_images image{
+  width: 80px;
+  height: 80px;
+}
+.li__content {
+  /* overflow: hidden; */
+  /* text-overflow: ellipsis; */
+  /* display: -webkit-box; */
+  /* -webkit-line-clamp: 2; */
+  /* -webkit-box-orient: vertical; */
+  line-height: 23px;
+  color: rgba(0, 0, 0, 0.45);
+}
+.li__info {
+  font-size: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 0 10px;
+}
+.info__type {
+  color: rgba(230, 126, 34, 1)
+}
+.info__time {
+  color: rgba(0, 0, 0, 0.65)
+}

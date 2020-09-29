@@ -1,0 +1,185 @@
+<!-- index.wxml -->
+<!-- 引入自定义导航 -->
+<nav-bar bind:myevent='onCheckoutCity' navbar-data='{{nvabarData}}'></nav-bar>
+<view class="container" style="padding-top: {{ height }}px">
+  <van-search value="{{ search }}" placeholder="搜索楼盘、房型" background="#FFCA4A" bind:search="onSearch" bind:change="onChange" />
+  <view class="icon__one" wx:if="{{idType!=2}}">
+    <view bindtap="tapTop" data-label="{{item.label}}" class="icon__li" wx:for="{{imagesOne}}" wx:for-item="item" wx:for-index="idx" wx:key="id">
+      <image src="{{item.url}}"></image>
+      <text>{{item.name}}</text>
+    </view>
+  </view>
+  <view class="main">
+    <view class="banner_box">
+      <view class="icon__two">
+        <view bindtap="tapTop" data-label="{{item.label}}" class="icon__li" wx:for="{{imagesTwo}}" wx:for-item="item" wx:for-index="idx" wx:key="id">
+          <image src="{{item.url}}"></image>
+          <text>{{item.name}}</text>
+        </view>
+      </view>
+      <!-- 轮播图 -->
+      <view class="banner">
+        <swiper indicator-dots="{{true}}" indicator-color="{{indicaColor}}" indicator-active-color="{{activeColor}}" autoplay="{{true}}" style="height:200px">
+          <swiper-item wx:for="{{slides}}" wx:for-item="item" wx:for-index="idx" wx:key="id" data-detail="{{item}}"  bindtap="toHouseDetail">
+            <image src="{{item.cover_image}}" class="slide_imag" />
+          </swiper-item>
+        </swiper>
+      </view>
+    </view>
+    <view class="approval" wx:if="{{idType==3||idType==4}}">
+      <view class="approval__top">
+        <text>我的审批</text>
+        <view class="approval__arrow" bindtap="tapgoAppro">
+          <text>全部审批</text>
+          <van-icon slot="right-icon" name="arrow" />
+        </view>
+      </view>
+      <view class="approval__center" style="background-image: url('https://s1.ax1x.com/2020/06/04/t00Oaj.png');">
+        <image src="../../assets/images/myApproval.png"></image>
+        <view class="center__text">
+          <text>
+            您有
+            <text style="font-size:18px">{{approNum}}</text>
+            条审批待处理
+          </text>
+          <text style="font-size:11px">请尽快处理</text>
+        </view>
+        <view class="center__button" bindtap="tapgoAppro">进入处理</view>
+      </view>
+    </view>
+    <view class="content">
+      <view class="content_titel">全部楼盘</view>
+      <view class="tab {{tabFix}}" id="tab">
+        <!-- 开始下拉~~~不要改这些代码了，我看的头晕 @_@ -->
+        <van-sticky offset-top="{{ height }}">
+          <van-dropdown-menu active-color="#8B572A" bindtap="tapDropdown" >
+            <!-- 区域下拉 -->
+            <van-dropdown-item bind:close="closeDropdown" bind:open="openDropdown" id="item1" title="区域">
+              <van-sidebar class="city__sidebar" active-key="{{ areaActiveKey }}" bind:change="areaOnChange">
+                <view style="background: #f7f8fa" catchtouchmove="moveFalse">
+                  <van-sidebar-item title="城区" />
+                  <!-- <van-sidebar-item title="地铁" /> -->
+                </view>
+                <view class="city__left">
+                  <text class="{{item.id == styleKeyL?'city__click-color': ''}}" wx:for="{{criteria.address}}" wx:for-item="item" wx:for-index="idx" wx:key="id" data-item="{{item}}" bindtap="cityLeftTap">
+                    {{item.shortname}}
+                  </text>
+                </view>
+                <view class="city__right" wx:if="{{cityRightData.length>10}}" >
+                  <van-checkbox label-position="right" value="{{ item.checked }}" shape="square" class="{{item.id==styleKeyR?'city__click-color': ''}}" wx:for="{{cityRightData}}" wx:for-item="item" wx:for-index="idx" wx:key="id" data-idx="{{idx}}" data-item="{{item}}" bindtap="cityRightTap" checked-color="rgba(243, 156, 18, 0.45)">
+                    {{item.shortname}}
+                  </van-checkbox>
+                </view>
+                <view class="city__right" wx:else catchtouchmove="moveFalse" >
+                  <van-checkbox label-position="right" value="{{ item.checked }}" shape="square" class="{{item.id==styleKeyR?'city__click-color': ''}}" wx:for="{{cityRightData}}" wx:for-item="item" wx:for-index="idx" wx:key="id" data-idx="{{idx}}" data-item="{{item}}" bindtap="cityRightTap" checked-color="rgba(243, 156, 18, 0.45)">
+                    {{item.shortname}}
+                  </van-checkbox>
+                </view>
+              </van-sidebar>
+              <view class="dropdown__button" catchtouchmove="moveFalse" >
+                <view class="dropdown__button-one">
+                  <text bindtap="dropNoeChoose">不限条件</text>
+                </view>
+                <view class="dropdown__button-two">
+                  <text bindtap="dropConfirm">确认</text>
+                </view>
+              </view>
+            </van-dropdown-item>
+            <!-- 价格下拉 -->
+            <van-dropdown-item bind:close="closeDropdown" bind:open="openDropdown" id="item2" title="价格">
+              <van-tree-select items="{{ moneyData }}" main-active-index="{{ mainActiveIndex }}" active-id="{{ activeId }}" bind:click-nav="onClickNavMoney" bind:click-item="onClickItemMoney" catchtouchmove="moveFalse" />
+              <view class="dropdown__button" catchtouchmove="moveFalse" >
+                <view class="dropdown__button-one">
+                  <text bindtap="dropNoeChoose">不限条件</text>
+                </view>
+                <view class="dropdown__button-two">
+                  <text bindtap="dropConfirm">确认</text>
+                </view>
+              </view>
+            </van-dropdown-item>
+            <!-- 户型下拉 -->
+            <van-dropdown-item bind:close="closeDropdown" bind:open="openDropdown" id="item3" title="户型" catchtouchmove="moveFalse" >
+              <view class="drop__house">
+                <text class="{{item.id == postData.house_type_id?'drop-button-style':''}}" wx:for="{{criteria.house_type}}" wx:for-item="item" wx:for-index="idx" wx:key="id" bindtap="onTapHouse" data-item="{{item}}">
+                  {{item.name}}
+                </text>
+              </view>
+              <view class="dropdown__button">
+                <view class="dropdown__button-one">
+                  <text bindtap="dropNoeChoose">不限条件</text>
+                </view>
+                <view class="dropdown__button-two">
+                  <text bindtap="dropConfirm">确认</text>
+                </view>
+              </view>
+            </van-dropdown-item>
+            <!-- 更多下拉 -->
+            <van-dropdown-item bind:close="closeDropdown" bind:open="openDropdown" id="item4" title="更多" catchtouchmove="moveFalse" >
+              <view class="drop__more">
+                <view class="more__li">
+                  <view class="li__title">面积（m²）</view>
+                  <view class="li__content">
+                    <text bindtap="bindArea" class="{{item.id == areaId?'drop-button-style':''}}" data-item="{{item}}" wx:for="{{criteria.area}}" wx:for-item="item" wx:for-index="idx" wx:key="id">
+                      {{item.name}}
+                    </text>
+                  </view>
+                </view>
+              </view>
+              <view class="drop__more">
+                <view class="more__li">
+                  <view class="li__title">类型</view>
+                  <view class="li__content">
+                    <text bindtap="bindType" class="{{item.id == postData.build_type_id?'drop-button-style':''}}" data-item="{{item}}" wx:for="{{criteria.type}}" wx:for-item="item" wx:for-index="idx" wx:key="id">
+                      {{item.name}}
+                    </text>
+                  </view>
+                </view>
+              </view>
+              <view class="drop__more">
+                <view class="more__li">
+                  <view class="li__title">售卖状态</view>
+                  <view class="li__content">
+                    <text bindtap="bindState" class="{{postData.state == 2?'drop-button-style':''}}" data-item="2">
+                      在售
+                    </text>
+                    <text bindtap="bindState" class="{{postData.state == 1?'drop-button-style':''}}" data-item="1">
+                      未开盘
+                    </text>
+                    <text bindtap="bindState" class="{{postData.state == 3?'drop-button-style':''}}" data-item="3">
+                      售罄
+                    </text>
+                  </view>
+                </view>
+              </view>
+              <view class="drop__more">
+                <view class="more__li">
+                  <view class="li__title">开盘时间</view>
+                  <view class="li__content">
+                    <text class="{{item.id == kaipanId?'drop-button-style':''}}" bindtap="bindOpenTime" data-item="{{item}}" wx:for="{{dropOpen}}" wx:for-item="item" wx:for-index="idx" wx:key="id">
+                      {{item.name}}
+                    </text>
+                  </view>
+                </view>
+              </view>
+              <view class="dropdown__button">
+                <view class="dropdown__button-one">
+                  <text bindtap="dropNoeChoose">不限条件</text>
+                </view>
+                <view class="dropdown__button-two">
+                  <text bindtap="dropConfirm">确认</text>
+                </view>
+              </view>
+            </van-dropdown-item>
+          </van-dropdown-menu>
+        </van-sticky>
+      </view>
+      <view class="build__list">
+        <build-list wx:for="{{buildData}}" wx:for-item="buildDataitem" wx:for-index="idx" wx:key="id" build-dataitem="{{buildDataitem}}" />
+        <view wx:if="{{buildData.length===0}}" class="none__image">
+          <image class="" src="../../assets/images/noneSearch.png"></image>
+          <text>当前城市暂无房源，敬请期待</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

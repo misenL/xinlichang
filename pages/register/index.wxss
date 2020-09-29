@@ -1,0 +1,78 @@
+/* pages/login/index.wxss */
+
+.van-icon--image {
+  font-size: 20px!important;
+}
+.van-field__icon-container {
+  display: flex;
+}
+.van-cell {
+  padding: 10px 4px!important;
+}
+.container {
+  background: rgba(240, 245, 251, 1)
+}
+.info__style {
+  background: rgba(255, 255, 255, 1);
+  margin-top: 8px;
+  padding: 22px 15px 0;
+}
+.info__title {
+  font-size: 18px;
+  color: rgba(0, 0, 0, 1);
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start
+}
+.info__title .title__label {
+  color: rgba(231, 76, 60, 1);
+  font-size: 12px;
+  margin: 0 0 3px 8px;
+}
+.sheet-index--van-action-sheet {
+  height: 50vh!important;
+}
+.user__uploader, .occu__uploader {
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.85);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 91vw;
+  padding: 10px 4px;
+  border-bottom: 1px solid #ebedf0;
+}
+.occu__uploader image {
+  width: 36px;
+  height: 36px;
+  border-radius: 23px;
+  margin-right: 5px;
+}
+.submit__button {
+  width: 342px;
+  height: 48px;
+  background: rgba(255, 202, 75, 1);
+  color: rgba(139, 87, 42, 1);
+  font-size: 18px;
+  text-align: center;
+  line-height: 48px;
+  border-radius: 5px;
+  margin: 24px auto;
+}
+.weChat__login {
+  font-size: 14px;
+  border: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: none;
+  color: rgba(0, 0, 0, 0.45);
+  padding: 0;
+  margin: 0;
+}
+button::after {
+  border: 0!important
+}
+.van-cell {
+  align-items: center
+}

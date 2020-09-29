@@ -1,0 +1,183 @@
+<!--pages/orderList/index.wxml-->
+<view class="order__list">
+  <view class="list__number">
+    <text class="font-color-grey">订单编号：</text>
+    <text class="font-size-14" style="margin-right:auto">{{orderData.order_sn}}</text>
+    <text class="font-color-grey" bindtap="tapSeeInfo" wx:if="{{userType==2}}">查看详情</text>
+    <van-icon class="font-color-grey" bindtap="tapSeeInfo" wx:if="{{userType==2}}" slot="right-icon" name="arrow" /> 
+  </view>
+  <view class="list__content">
+    <!-- 头部基本信息 -->
+    <view class="conten-grid">
+      <text class="font-color-grey">订单进度：</text>
+      <text class="font-size-14 font-color-orange" wx:if="{{orderData.examine!=4}}">{{speedArr[(orderData.order_state)/10]}}</text>
+      <text class="font-size-14 font-color-orange" wx:else>{{speedTwoArr[(orderData.order_state)/10]}}</text>
+      <text class="font-color-grey" wx:if="{{orderData.order_state==10}}">报备状态：</text>
+      <text class="font-size-14 {{orderData.order_rate==10?'font-color-red':'font-color-blue'}}" wx:if="{{orderData.order_state==10}}">{{orderData.order_rate==10?'待确认':'已确认'}}</text>
+    </view>
+      <view class="conten-grid">
+        <text class="font-color-grey">客户姓名：</text>
+        <text class="font-size-14">{{orderData.order_report.customer_name}}</text>
+        <text class="font-color-grey">客户性别：</text>
+        <text class="font-size-14">{{orderData.order_report.customer_sex==1?'男':'女'}}</text>
+      </view>
+      <view class="conten-grid">
+        <text class="font-color-grey">手机号码：</text>
+        <text class="font-size-14">{{orderData.order_report.customer_phone}}</text>
+      </view>
+      <view class="conten-grid">
+        <text class="font-color-grey">经纪姓名：</text>
+        <text class="font-size-14">{{orderData.agent.real_name}}</text>
+        <text class="font-color-grey">经纪电话：</text>
+        <text class="font-size-14">{{orderData.agent.phone}}</text>
+      </view>
+    <!-- 根据状态切换 -->
+    <!-- 宝贝 -->
+    <block wx:if="{{orderData.order_state==10}}">
+      <!-- <view class="conten-grid">
+        <text class="font-color-grey">驻场姓名：</text>
+        <text class="font-size-14">{{orderData.order_report.stay.real_name}}</text>
+        <text class="font-color-grey">经纪电话：</text>
+        <text class="font-size-14">{{orderData.agent.phone}}</text>
+      </view> -->
+      <view class="conten-grid">
+        <text class="font-color-grey">楼盘名称：</text>
+        <text class="font-size-14" style="grid-column-start:2; grid-column-end:6">{{orderData.order_report.build.name}}</text>
+      </view>
+      <view class="conten-grid">
+        <text class="font-color-grey">楼盘区域：</text>
+        <text class="font-size-14" style="grid-column-start:2; grid-column-end:6">{{orderData.order_report.city.shortname}} {{orderData.order_report.area.shortname}}</text>
+      </view>
+      <view class="conten-grid">
+        <text class="font-color-grey">报备时间：</text>
+        <text class="font-size-14" style="grid-column-start:2; grid-column-end:6">{{orderData.order_report.report_date}} {{orderData.order_report.report_time}}</text>
+      </view>
+      <view class="conten-grid">
+        <text class="font-color-grey" style="align-self:start">备注信息：</text>
+        <text class="font-size-14 font-nowrap" style="grid-column-start:2; grid-column-end:6">{{orderData.order_report.remarks||'/'}}</text>
+      </view>
+    </block>
+    <!-- 带看 -->
+    <block wx:if="{{orderData.order_state==20}}">
+      <view class="conten-grid">
+        <text class="font-color-grey">驻场姓名：</text>
+        <text class="font-size-14">{{orderData.order_watch_household.stay.real_name}}</text>
+      </view>
+      <view class="conten-grid">
+        <text class="font-color-grey">带看楼盘：</text>
+        <text class="font-size-14" style="grid-column-start:2; grid-column-end:6">{{orderData.order_report.build.name}}</text>
+      </view>
+      <view class="conten-grid">
+        <text class="font-color-grey">楼盘区域：</text>
+        <text class="font-size-14" style="grid-column-start:2; grid-column-end:6">{{orderData.order_report.city.shortname}} {{orderData.order_report.area.shortname}}</text>
+      </view>
+      <view class="conten-grid">
+        <text class="font-color-grey">带看房型：</text>
+        <text class="font-size-14 house__style" style="grid-column-start:2; grid-column-end:6">
+          <text wx:for="{{orderData.order_watch.order_watch_household}}" wx:for-item="item" wx:for-index="idx" wx:key="id">{{item.household.name}}</text>
+        </text>
+      </view>
+      <view class="conten-grid">
+        <text class="font-color-grey">带看时间：</text>
+        <text class="font-size-14" style="grid-column-start:2; grid-column-end:6">{{orderData.order_watch.watch_date}} {{orderData.order_watch.watch_time}}</text>
+      </view>
+      <view class="conten-grid">
+        <text class="font-color-grey" style="align-self:start">带看备注：</text>
+        <text class="font-size-14 font-nowrap" style="grid-column-start:2; grid-column-end:6">{{orderData.order_watch.remarks||'/'}}</text>
+      </view>
+    </block>
+    <!-- 认购 and 认购（已取消） -->
+    <block wx:if="{{orderData.order_state==30||orderData.order_state==50}}">
+      <!-- <view class="conten-grid">
+        <text class="font-color-grey">经纪姓名：</text>
+        <text class="font-size-14">{{orderData.agent.real_name}}</text>
+        <text class="font-color-grey">经纪电话：</text>
+        <text class="font-size-14">{{orderData.agent.phone}}</text>
+      </view> -->
+      <view class="conten-grid">
+        <text class="font-color-grey">驻场姓名：</text>
+        <text class="font-size-14" style="grid-column-start:2; grid-column-end:6">{{orderData.order_report.stay.real_name}}</text>
+      </view>
+      <view class="conten-grid">
+        <text class="font-color-grey">楼盘区域：</text>
+        <text class="font-size-14" style="grid-column-start:2; grid-column-end:6">{{orderData.order_report.city.shortname}} {{orderData.order_report.area.shortname}}</text>
+      </view>
+      <view class="conten-grid">
+        <text class="font-color-grey">认购楼盘：</text>
+        <text class="font-size-14" style="grid-column-start:2; grid-column-end:6">{{orderData.order_report.build.name}}</text>
+      </view>
+      <!-- <view class="conten-grid" style="grid-template-columns: 1.2fr 2fr 1.2fr .8fr;">
+        <text class="font-color-grey" style="align-self:start">认购单元：</text>
+        <text class="font-size-14">{{orderData.order_subscribe.unit||'/'}}</text>
+        <text class="font-color-grey">单元面积：</text>
+        <text class="font-size-14">{{orderData.order_subscribe.area+'m²'||'/'}}</text>
+      </view>
+      <view class="conten-grid">
+        <text class="font-color-grey">认购总价：</text>
+        <text class="font-size-14 font-color-red" style="grid-column-start:2; grid-column-end:6">{{orderData.order_subscribe.total_amount+'万'||'/'}}</text>
+      </view> -->
+      <view class="conten-grid">
+        <text class="font-color-grey">认购时间：</text>
+        <text class="font-size-14" style="grid-column-start:2; grid-column-end:6">{{orderData.order_subscribe.created_at}}</text>
+      </view>
+    </block>
+    <!-- 成交 and 成交（已取消） -->
+    <block wx:if="{{orderData.order_state==40||orderData.order_state==60}}">
+      <view class="conten-grid">
+        <text class="font-color-grey">身份证号：</text>
+        <text class="font-size-14" style="grid-column-start:2; grid-column-end:6">{{orderData.order_report.customer_card}}</text>
+      </view>
+      <view class="conten-grid">
+        <text class="font-color-grey">驻场姓名：</text>
+        <text class="font-size-14" style="grid-column-start:2; grid-column-end:6">{{orderData.order_deal.stay.real_name}}</text>
+      </view>
+      <view class="conten-grid">
+        <text class="font-color-grey">认购楼盘：</text>
+        <text class="font-size-14" style="grid-column-start:2; grid-column-end:6">{{orderData.order_report.build.name}}</text>
+      </view>
+      <!-- <view class="conten-grid" style="grid-template-columns: 1.2fr 2fr 1.2fr 1fr;">
+        <text class="font-color-grey" style="align-self:start">认购单元：</text>
+        <text class="font-size-14">{{orderData.order_deal.unit||'/'}}</text>
+        <text class="font-color-grey">单元面积：</text>
+        <text class="font-size-14">{{orderData.order_deal.area+'m²'||'/'}}</text>
+      </view> -->
+      <view class="conten-grid" style="grid-template-columns: 1.2fr 1.8fr 1.2fr 1.2fr;">
+        <text class="font-color-grey" style="align-self:start">认购总价：</text>
+        <text class="font-size-14 font-color-red">{{orderData.order_deal.subscribe_amount+'万'||'/'}}</text>
+        <text class="font-color-grey">成交总价：</text>
+        <text class="font-size-14 font-color-red">{{orderData.order_deal.deal_amount+'万'||'/'}}</text>
+      </view>
+      <view class="conten-grid" style="grid-template-columns: 1.2fr 1.8fr 1.2fr 1.2fr;">
+        <!-- <text class="font-color-grey">预估佣金：</text>
+        <text class="font-size-14">{{orderData.deal_commission}}元</text> -->
+        <text class="font-color-grey">实际佣金：</text>
+        <text class="font-size-14 font-color-red">{{orderData.actual_commission}}元</text>
+      </view>
+      <view class="conten-grid">
+        <text class="font-color-grey">成交时间：</text>
+        <text class="font-size-14" style="grid-column-start:2; grid-column-end:6">{{orderData.order_deal.created_at}}</text>
+      </view>
+    </block>
+    <!-- 操作按钮 -->
+    <block wx:if="{{userType==2}}">
+      <view class="list__button" wx:if="{{orderData.order_state == 10}}">
+        <view bindtap="copyReport">复制报备信息</view>
+        <view class="button__yellow" wx:if="{{orderData.order_rate == 10}}" bindtap="tapSeeInfo">确认报备</view>
+        <view class="button__blue" wx:if="{{orderData.order_rate == 20}}" bindtap="tapSeeInfo">下一步（带看）</view>
+      </view>
+
+      <view class="list__operation style-yellow" wx:if="{{orderData.order_state == 20}}" bindtap="tapSeeInfo">
+        确认认购
+      </view>
+      <view class="list__button" wx:if="{{orderData.order_state == 30}}">
+        <view class="font-color-grey" wx:if="{{orderData.revoke==1}}" >取消订单</view>
+        <view class="button__confirm" wx:if="{{orderData.revoke==2}}" bindtap="tapSeeInfo">取消订单</view>
+        <view class="button__submit" bindtap="tapSeeInfo">下一步（成交）</view>
+      </view>
+      <view class="list__button" wx:if="{{orderData.order_state == 50 || orderData.order_state == 60}}">
+        <view bindtap="tapSeeInfo">撤回审批</view>
+        <view class="button__submit" bindtap="tapSeeInfo">重新提交</view>
+      </view>
+    </block>
+  </view>
+</view>

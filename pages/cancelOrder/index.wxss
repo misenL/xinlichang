@@ -1,0 +1,96 @@
+/* pages/cancelOrder/index.wxss */
+
+.container {
+  background: rgba(240, 245, 251, 1)
+}
+.van-uploader {
+  margin: 0 16px;
+}
+.van-uploader image {
+  margin-right: 5px;
+}
+.font__color-grey {
+  color: rgba(0, 0, 0, 0.45);
+  justify-self: end;
+}
+.font__color-orange {
+  color:rgba(230, 126, 34, 1)
+}
+.font__h1 {
+  color: rgba(0, 0, 0, 1);
+  font-size: 18px
+}
+.block__grid-4 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1.5fr;
+  align-self: center;
+  align-items: center;
+  justify-self: start;
+}
+.block__grid-5 {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr 1fr 1fr;
+  align-self: center;
+  align-items: center;
+  justify-self: start;
+}
+.grid-across {
+  grid-column-start: 2;
+  grid-column-end: 5
+}
+.block__list-style {
+  padding: 6px 0;
+}
+.block__title {
+  color: rgba(231, 76, 60, 1);
+  font-size: 12px;
+  padding: 5px 16px 10px;
+}
+.block__title text {
+  margin-right: 8px
+}
+.order__num {
+  padding: 10px 0;
+  margin: 0 16px;
+  border-bottom: 1px solid rgba(230, 230, 230, 1)
+}
+.order__num,
+.order__block {
+  background: rgba(255, 255, 255, 1);
+  font-size: 14px;
+}
+.info__style {
+  padding: 8px 0 12px 0;
+  margin-bottom: 8px;
+}
+.order__block textarea {
+  padding: 5px 16px;
+  height: 100px;
+  font-size: 14px;
+}
+.info__bottom {
+  margin-bottom: 15px;
+}
+.bottom__operation {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  text-align: center;
+  color: rgba(0, 0, 0, 0.65);
+  /* position: fixed;
+  bottom: 0; */
+  width: 100vw;
+  margin-bottom: 40px;
+}
+.bottom__operation view {
+  border-radius: 4px;
+  border: 1px solid rgba(0, 0, 0, 0.25);
+  height: 40px;
+  line-height: 40px;
+  width: 162px;
+  background: rgba(255, 255, 255, 1)
+}
+.button-red {
+  color: rgba(231, 76, 60, 1);
+  border: 1px solid rgba(248, 89, 89, 1)!important;
+}

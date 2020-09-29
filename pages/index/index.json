@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "新立场",
+  "onReachBottomDistance": 50,
+  "usingComponents": {
+    "nav-bar": "../../common/navbar/index",
+    "build-list": "../../common/buildList/index",
+    "bottom-sticky": "../../common/bottomSticky/index"
+  }
+}

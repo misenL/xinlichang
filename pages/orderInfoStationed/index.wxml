@@ -1,0 +1,151 @@
+<!--pages/orderInfoStationed/index.wxml-->
+<!-- 引入自定义导航 -->
+<nav-bar navbar-data='{{nvabarData}}'></nav-bar>
+<view class="container" style="margin-top: {{ height }}px">
+  <!-- 客户信息 -->
+  <view class="order__block">
+    <view class="order__num">
+      <text class="font__color-grey">订单编号：</text>
+      <text>1321314123217968</text>
+    </view>
+    <view class="info__style">
+      <view class="block__grid-4 block__list-style">
+        <text class="font__color-grey">订单进度：</text>
+        <text class="font__color-orange grid-across">带看</text>
+      </view>
+      <view class="block__grid-4 block__list-style">
+        <text class="font__color-grey">客户姓名：</text>
+        <text>潘怡逸</text>
+        <text class="font__color-grey">客户性别：</text>
+        <text>女</text>
+      </view>
+      <view wx:if="{{stationedType!=0}}" class="block__grid-4 block__list-style">
+        <text class="font__color-grey">身份证号：</text>
+        <text class="grid-across">440802202001010603</text>
+      </view>
+      <view class="block__grid-4 block__list-style">
+        <text class="font__color-grey">手机号码：</text>
+        <text class="grid-across">15920494065</text>
+      </view>
+    </view>
+  </view>
+  <!-- 带看信息 -->
+  <view class="order__block" wx:if="{{stationedType==0}}">
+    <view class="info__style">
+      <view class="block__grid-4 block__list-style">
+        <text class="font__color-grey">经纪姓名：</text>
+        <text class="grid-across">李钰</text>
+      </view>
+      <view class="block__grid-4 block__list-style">
+        <text class="font__color-grey">楼盘区域：</text>
+        <text class="grid-across">深圳市 龙华区</text>
+      </view>
+      <view class="block__grid-4 block__list-style">
+        <text class="font__color-grey">带看楼盘：</text>
+        <text class="grid-across">龙华金茂府</text>
+      </view>
+      <view class="block__grid-4 block__list-style">
+        <text class="font__color-grey">带看房型：</text>
+        <view class="grid-across block__flex">
+          <text style="padding: 0 0 5px 0" wx:for="{{houseList}}" wx:for-item="item" wx:for-index="idx" wx:key="id">{{item}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- 认购信息 -->
+  <view class="order__block" wx:if="{{stationedType==1}}">
+    <view class="info__style">
+      <view class="block__grid-4 block__list-style">
+        <text class="font__color-grey">经纪姓名：</text>
+        <text>李钰</text>
+        <text class="font__color-grey">驻场姓名：</text>
+        <text>李明新</text>
+      </view>
+      <view class="block__grid-4 block__list-style">
+        <text class="font__color-grey">楼盘区域：</text>
+        <text class="grid-across">深圳市 龙华区</text>
+      </view>
+      <view class="block__grid-4 block__list-style">
+        <text class="font__color-grey">认购楼盘：</text>
+        <text class="grid-across">龙华金茂府</text>
+      </view>
+      <view class="block__grid-5 block__list-style">
+        <text class="font__color-grey">认购单元：</text>
+        <text>/</text>
+        <text class="font__color-grey">单元面积：</text>
+        <text>/</text>
+      </view>
+      <view class="block__grid-5 block__list-style">
+        <text class="font__color-grey">认购总价：</text>
+        <text>/</text>
+      </view>
+    </view>
+  </view>
+  <!-- 成交信息 -->
+  <view class="order__block" wx:if="{{stationedType==2}}">
+    <view class="info__style">
+      <view class="block__grid-4 block__list-style">
+        <text class="font__color-grey">经纪姓名：</text>
+        <text>李钰</text>
+        <text class="font__color-grey">驻场姓名：</text>
+        <text>李明新</text>
+      </view>
+      <view class="block__grid-4 block__list-style">
+        <text class="font__color-grey">楼盘区域：</text>
+        <text class="grid-across">深圳市 龙华区</text>
+      </view>
+      <view class="block__grid-4 block__list-style">
+        <text class="font__color-grey">成交楼盘：</text>
+        <text class="grid-across">龙华金茂府</text>
+      </view>
+      <view class="block__grid-5 block__list-style">
+        <text class="font__color-grey">成交单元：</text>
+        <text>/</text>
+        <text class="font__color-grey">单元面积：</text>
+        <text>/</text>
+      </view>
+      <view class="block__grid-5 block__list-style">
+        <text class="font__color-grey">认购总价：</text>
+        <text>/</text>
+        <text class="font__color-grey">成交总价：</text>
+        <text>/</text>
+      </view>
+      <view class="block__grid-4 block__list-style">
+        <text class="font__color-grey">所获佣金：</text>
+        <text class="grid-across font__color-red">1200012.00元</text>
+      </view>
+    </view>
+  </view>
+
+
+  <!-- 其它信息 -->
+  <view class="order__block">
+    <view class="info__style">
+      <view class="block__grid-4 block__list-style">
+        <text class="font__color-grey">{{strTime}}</text>
+        <text class="grid-across">2016年11月15日  21:30</text>
+      </view>
+      <view class="block__grid-4 block__list-style">
+        <text class="font__color-grey">{{strRemarks}}</text>
+        <text class="grid-across">我想用艺术感动人们的内心。我希望他们这样说到：他的感受深刻而温柔</text>
+      </view>
+      <view class="block__grid-4 block__list-style">
+        <text class="font__color-grey">{{strFile}}</text>
+      </view>
+      <view class="enclosure-image">
+        <image wx:for="{{imagesArr}}" wx:for-item="item" wx:for-index="idx" wx:key="id" src="{{item.url}}" data-url="{{item.url}}" bindtap="tapImage" />
+      </view>
+    </view>
+  </view>
+  <!-- 底部操作按钮 -->
+  <view wx:if="{{stationedType==0}}" class="confirm__button button__blue">下一步（认购）</view>
+  <view wx:if="{{stationedType==1}}" class="bottom__operation">
+    <view class="button-red">提交取消申请</view>
+    <view class="button-blue">下一步（成交）</view>
+  </view>
+  <view wx:if="{{stationedType==2}}" class="confirm__button button-red">提交取消申请</view>
+  <!-- 图片弹出框 -->
+  <van-popup show="{{ previewShow }}" bind:close="onClosePopup">
+    <image src="{{previewImg}}"></image>
+  </van-popup>
+</view>

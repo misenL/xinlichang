@@ -1,0 +1,57 @@
+<!--pages/invite/index.wxml-->
+<nav-bar navbar-data='{{nvabarData}}'></nav-bar>
+<view class="container">
+
+  <view class="my-container">
+      <view class="my" wx:if="{{parent !== null && parent.length !== 0}}">
+        <view class="my-detail">
+          <van-image round width="56px" height="56px" src="{{parent.avatarUrl}}" />
+          <view class="my-detail-msg">
+            <view class="my-detail-msg-detail">
+              <text>{{parent.real_name}}</text>
+              <view class="my-bs">推荐人</view>
+            </view>
+            <view class="phone">{{parent.phone}}</view>
+          </view>
+        </view>
+      </view>
+  </view>
+
+  <view class="invite-list">
+    <view class="invite-title">
+      <text>我邀请的（{{invitePeople.length}}）</text>
+      <text>* 可邀请添加对方为自己团队成员</text>
+    </view>
+
+    <!-- 列表 -->
+    <scroll-view scroll-y="true" style="max-height: 750rpx;" bindscrolltolower="getMyInvitePeople">
+        <view class="invite-list-member" wx:for="{{invitePeople}}" wx:for-index="idx" wx:for-item="item" wx:key="key">
+        <view class="member-msg">
+          <van-image round width="42px" height="42px" src="{{item.avatarUrl}}" />
+          <view class="member-detail">
+            <view class="name">{{item.real_name}}</view>
+            <view class="phone">{{item.phone}}</view>
+          </view>
+        </view>
+        <!-- 按钮盒子 -->
+        <!-- <view class="invite-list-button-container">
+          <view class="invite-list-button invite-list-button-team">
+            团队邀请
+          </view>
+        </view> -->
+      </view>
+    </scroll-view>
+
+  
+  </view>
+
+  <!-- 邀请更多人注册 -->
+  <!-- <view class="invite-button">
+    <view>
+      <button class="contact__customer"   open-type="share">
+          邀请更多人注册
+      </button>
+    </view>
+  </view> -->
+</view>
+<bottom-sticky bsticky-data='{{bstickyData}}' />

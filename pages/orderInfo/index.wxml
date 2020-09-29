@@ -1,0 +1,340 @@
+<!--pages/orderInfo/index.wxml-->
+
+<nav-bar navbar-data='{{nvabarData}}'></nav-bar>
+<view class="container" style="margin-top: {{ height }}px">
+<!-- 第一快 -->
+  <view class="info__block-one">
+    <view class="order__number">
+      <text class="font-color-grey">订单编号：</text>
+      <text class="font-size-14">{{orderInfo.order_sn}}</text>
+    </view>
+    <view class="info__list">
+      <text class="font-color-grey">订单进度：</text>
+      <text class="font-size-14" style="color:rgba(230, 126, 34, 1);min-width:100px" wx:if="{{orderInfo.examine!=4}}">{{speedArr[(orderInfo.order_state)/10]}}</text>
+      <text class="font-size-14" style="color:rgba(230, 126, 34, 1);min-width:100px" wx:else>{{speedTwoArr[(orderInfo.order_state)/10]}}</text>
+      <text class="font-color-grey" wx:if="{{orderInfo.order_state==10}}">报备状态：</text>
+      <text class="font-size-14 {{orderInfo.order_rate==10?'font-color-red':'font-color-blue'}}" wx:if="{{orderInfo.order_state==10}}">{{orderInfo.order_rate==10?'待确认':'已确认'}}</text>
+    </view>
+    <view class="info__list">
+      <text class="font-color-grey">客户姓名：</text>
+      <text class="font-size-14" style="min-width:100px">{{orderInfo.order_report.customer_name}}</text>
+      <text class="font-color-grey">客户性别：</text>
+      <text class="font-size-14">{{orderInfo.order_report.customer_sex==1?'男':'女'}}</text>
+    </view>
+    <view class="info__list" wx:if="{{orderInfo.order_state==30 || orderInfo.order_state==40}}">
+      <text class="font-color-grey">身份证号：</text>
+      <text class="font-size-14">{{orderInfo.order_report.customer_card}}</text>
+    </view>
+    <view class="info__list">
+      <text class="font-color-grey">手机号码：</text>
+      <text class="font-size-14">{{orderInfo.order_report.customer_phone}}</text>
+    </view>
+    <!-- 报备 -->
+    <block wx:if="{{orderInfo.order_state==10}}">
+      <view class="info__list">
+        <text class="font-color-grey">经纪姓名：</text>
+        <text class="font-size-14" style="min-width:100px">{{orderInfo.agent.real_name}}</text>
+        <text class="font-color-grey">经纪电话：</text>
+        <text class="font-size-14">{{orderInfo.agent.phone}}</text>
+      </view>
+      <view class="info__list">
+        <text class="font-color-grey">楼盘名称：</text>
+        <text class="font-size-14">{{orderInfo.order_report.build.name}}</text>
+      </view>
+      <view class="info__list">
+        <text class="font-color-grey">楼盘区域：</text>
+        <text class="font-size-14">{{orderInfo.order_report.city.shortname}} {{orderInfo.order_report.area.shortname}}</text>
+      </view>
+      <view class="info__list">
+        <text class="font-color-grey">报备时间：</text>
+        <text class="font-size-14" style="color:rgba(231, 76, 60, 1)">{{orderInfo.order_report.report_date}} {{orderInfo.order_report.report_time}}</text>
+      </view>
+      <view class="info__list" style="align-items: flex-start">
+        <text class="font-color-grey">报备备注：</text>
+        <text class="font-size-14 text__wrap">{{orderInfo.order_report.remarks||'/'}}</text>
+      </view>
+    </block>
+    <!-- 取消(认购或成交) -->
+    <block wx:if="{{orderInfo.order_state==50 || orderInfo.order_state==60}}">
+      <view class="info__list">
+        <text class="font-color-grey">经纪姓名：</text>
+        <text class="font-size-14" style="min-width:100px">{{orderInfo.agent.real_name}}</text>
+        <text class="font-color-grey">经纪电话：</text>
+        <text class="font-size-14">{{orderInfo.agent.phone}}</text>
+      </view>
+      <view class="info__list">
+        <text class="font-color-grey">认购楼盘：</text>
+        <text class="font-size-14">{{orderInfo.order_report.build.name||'/'}}</text>
+      </view>
+      <view class="info__list">
+        <text class="font-color-grey">认购单元：</text>
+        <text class="font-size-14" style="min-width:120px">{{orderInfo.order_subscribe.unit||'/'}}</text>
+        <text class="font-color-grey">单元面积：</text>
+        <text class="font-size-14">{{orderInfo.order_subscribe.area+'m²'||'/'}}</text>
+      </view>
+      <view class="info__list">
+        <text class="font-color-grey">认购总价：</text>
+        <text class="font-size-14" style="min-width:120px;color:rgba(231, 76, 60, 1)">{{orderInfo.order_subscribe.total_amount+'万'||'/'}}</text>
+        <block wx:if="{{orderInfo.order_state==60}}">
+          <text class="font-color-grey">成交总价：</text>
+          <text class="font-size-14" style="color:rgba(231, 76, 60, 1)">{{orderInfo.order_deal.deal_amount+'万'||'/'}}</text>
+        </block>
+      </view>
+      <view class="info__list" wx:if="{{orderInfo.order_state==60}}">
+        <text class="font-color-grey">所获佣金：</text>
+        <text class="font-size-14" style="color:rgba(231, 76, 60, 1)">{{orderInfo.commission}}元</text>
+      </view>
+      <view class="info__list">
+        <text class="font-color-grey">认购时间：</text>
+        <text class="font-size-14">{{orderInfo.order_subscribe.created_at}}</text>
+      </view>
+    </block>
+  </view>
+
+  <!-- 带看 -->
+  <block wx:if="{{orderInfo.order_state==20}}">
+  <!-- 第二块 -->
+    <view class="info__block-two">
+      <view class="info__list" style="padding-top:20px">
+        <text class="font-color-grey">经纪姓名：</text>
+        <text class="font-size-14" style="min-width:100px">{{orderInfo.agent.real_name}}</text>
+        <text class="font-color-grey">经纪电话：</text>
+        <text class="font-size-14">{{orderInfo.agent.phone}}</text>
+      </view>
+      <view class="info__list">
+        <text class="font-color-grey">带看楼盘：</text>
+        <text class="font-size-14">{{orderInfo.order_report.build.name}}</text>
+      </view>
+      <view class="info__list">
+        <text class="font-color-grey">楼盘区域：</text>
+        <text class="font-size-14">{{orderInfo.order_report.city.shortname}} {{orderInfo.order_report.area.shortname}}</text>
+      </view>
+      <view class="info__list">
+        <text class="font-color-grey" style="align-items: flex-start">带看房型：</text>
+        <view class="house__list" style="align-items: flex-start">
+          <text class="font-size-14" wx:for="{{orderInfo.order_watch.order_watch_household}}" wx:for-item="item" wx:for-index="idx" wx:key="id">{{item.household.name}}</text>
+        </view>
+      </view>
+    </view>
+    <!-- 第三块 -->
+    <view class="info__block-three">
+      <view class="info__list" style="padding-top:20px">
+        <text class="font-color-grey">带看时间：</text>
+        <text class="font-size-14">{{orderInfo.order_watch.watch_date}} {{orderInfo.order_watch.watch_time}}</text>
+      </view>
+      <view class="info__list" style="align-items: flex-start">
+        <text class="font-color-grey">带看备注：</text>
+        <text class="font-size-14 text__wrap">{{orderInfo.order_watch.remarks||'/'}}</text>
+      </view>
+      <view class="info__list">
+        <text class="font-color-grey">带看附件：</text>
+      </view>
+      <view class="info__list info__file">
+        <image wx:for="{{orderInfo.order_watch.appendix}}" wx:for-item="item" wx:for-index="idx" wx:key="id" src="{{item}}" data-url="{{item}}" bindtap="tapImage" />
+      </view>
+    </view>
+  </block>
+
+  <!-- 认购 -->
+  <block wx:if="{{orderInfo.order_state==30}}">
+  <!-- 第二块 -->
+    <view class="info__block-two">
+      <view class="info__list" style="padding-top:20px">
+        <text class="font-color-grey">经纪姓名：</text>
+        <text class="font-size-14" style="min-width:100px">{{orderInfo.agent.real_name}}</text>
+        <text class="font-color-grey">经纪电话：</text>
+        <text class="font-size-14">{{orderInfo.agent.phone}}</text>
+      </view>
+      <view class="info__list">
+        <text class="font-color-grey">驻场姓名：</text>
+        <text class="font-size-14">{{orderInfo.order_subscribe.stay.real_name}}</text>
+      </view>
+      <view class="info__list">
+        <text class="font-color-grey">楼盘区域：</text>
+        <text class="font-size-14">{{orderInfo.order_report.city.shortname}} {{orderInfo.order_report.area.shortname}}</text>
+      </view>
+      <view class="info__list">
+        <text class="font-color-grey">认购楼盘：</text>
+        <text class="font-size-14">{{orderInfo.order_report.build.name}}</text>
+      </view>
+      <view class="info__list">
+        <text class="font-color-grey">认购单元：</text>
+        <text class="font-size-14" style="min-width:120px">{{orderInfo.order_subscribe.unit||'/'}}</text>
+        <text class="font-color-grey">单元面积：</text>
+        <text class="font-size-14">{{orderInfo.order_subscribe.area+'m²'||'/'}}</text>
+      </view>
+      <view class="info__list">
+        <text class="font-color-grey">认购总价：</text>
+        <text class="font-size-14">{{orderInfo.order_subscribe.total_amount+'万'||'/'}}</text>
+      </view>
+      <view class="info__list">
+        <text class="font-color-grey">认购时间：</text>
+        <text class="font-size-14">{{orderInfo.order_subscribe.created_at}}</text>
+      </view>
+    </view>
+    <!-- 第三块 -->
+    <view class="info__block-three">
+      <view class="info__list" style="padding-top:20px;align-items: flex-start">
+        <text class="font-color-grey">认购备注：</text>
+        <text class="font-size-14 text__wrap">{{orderInfo.order_subscribe.remarks||'/'}}</text>
+      </view>
+      <view class="info__list">
+        <text class="font-color-grey">认购附件：</text>
+      </view>
+      <view class="info__list info__file">
+        <image wx:for="{{orderInfo.order_subscribe.appendix}}" wx:for-item="item" wx:for-index="idx" wx:key="id" src="{{item}}" data-url="{{item}}" bindtap="tapImage" />
+      </view>
+    </view>
+  </block>
+
+  <!-- 成交 -->
+  <block wx:if="{{orderInfo.order_state==40}}">
+  <!-- 第二块 -->
+    <view class="info__block-two">
+      <view class="info__list" style="padding-top:20px">
+        <text class="font-color-grey">经纪姓名：</text>
+        <text class="font-size-14" style="min-width:100px">{{orderInfo.agent.real_name}}</text>
+        <text class="font-color-grey">经纪电话：</text>
+        <text class="font-size-14">{{orderInfo.agent.phone}}</text>
+      </view>
+      <view class="info__list">
+        <text class="font-color-grey">驻场姓名：</text>
+        <text class="font-size-14">{{orderInfo.order_deal.stay.real_name}}</text>
+      </view>
+      <view class="info__list">
+        <text class="font-color-grey">楼盘区域：</text>
+        <text class="font-size-14">{{orderInfo.order_report.city.shortname}} {{orderInfo.order_report.area.shortname}}</text>
+      </view>
+      <view class="info__list">
+        <text class="font-color-grey">成交楼盘：</text>
+        <text class="font-size-14">{{orderInfo.order_report.build.name||'/'}}</text>
+      </view>
+      <view class="info__list">
+        <text class="font-color-grey">成交单元：</text>
+        <text class="font-size-14" style="min-width:120px">{{orderInfo.order_deal.unit||'/'}}</text>
+        <text class="font-color-grey">单元面积：</text>
+        <text class="font-size-14">{{orderInfo.order_deal.area+'m²'||'/'}}</text>
+      </view>
+      <view class="info__list">
+        <text class="font-color-grey">认购总价：</text>
+        <text class="font-size-14" style="min-width:120px">{{orderInfo.order_deal.subscribe_amount+'万'||'/'}}</text>
+        <text class="font-color-grey">成交总价：</text>
+        <text class="font-size-14">{{orderInfo.order_deal.deal_amount+'万'||'/'}}</text>
+      </view>
+      <!-- <view class="info__list">
+        <text class="font-color-grey">预估佣金：</text>
+        <text class="font-size-14" style="color:rgba(231, 76, 60, 1)">{{orderInfo.deal_commission}}元</text>
+      </view> -->
+      <view class="info__list" bindtap="tapModifyCommission">
+        <text class="font-color-grey">实际佣金：</text>
+        <text class="font-size-14" style="color:rgba(231, 76, 60, 1)">{{orderInfo.actual_commission}}元</text>
+      </view>
+      <view class="info__list">
+        <text class="font-color-grey">成交时间：</text>
+        <text class="font-size-14">{{orderInfo.order_deal.created_at}}</text>
+      </view>
+    </view>
+    <!-- 第三块 -->
+    <view class="info__block-three">
+      <view class="info__list" style="padding-top:20px;align-items: flex-start">
+        <text class="font-color-grey">成交备注：</text>
+        <text class="font-size-14 text__wrap">{{orderInfo.order_deal.remarks||'/'}}</text>
+      </view>
+      <view class="info__list">
+        <text class="font-color-grey">成交附件：</text>
+      </view>
+      <view class="info__list info__file">
+        <image wx:for="{{orderInfo.order_deal.appendix}}" wx:for-item="item" wx:for-index="idx" wx:key="id" src="{{item}}" data-url="{{item}}" bindtap="tapImage" />
+      </view>
+    </view>
+  </block>
+
+  <!-- 取消(认购或成交) -->
+  <block wx:if="{{orderInfo.order_state==50 || orderInfo.order_state==60}}">
+    <!-- 第二块 -->
+    <view class="info__block-two">
+      <view class="info__list" style="padding-top:20px">
+        <text class="font-color-grey">提交时间：</text>
+        <text class="font-size-14">{{orderInfo.order_state==50?orderInfo.order_subscribe.created_at:orderInfo.order_deal.created_at}}</text>
+      </view>
+      <view class="info__list">
+        <text class="font-color-grey">驻场姓名：</text>
+        <text class="font-size-14">{{orderInfo.stay.real_name}}</text>
+      </view>
+      <view class="info__list" style="align-items: flex-start">
+        <text class="font-color-grey">审批备注：</text>
+        <text class="font-size-14 text__wrap">{{orderInfo.remarks||'/'}}</text>
+      </view>
+      <view class="info__list">
+        <text class="font-color-grey">审批附件：</text>
+      </view>
+      <view class="info__list info__file">
+        <image wx:for="{{orderInfo.appendix}}" wx:for-item="item" wx:for-index="idx" wx:key="id" src="{{item}}" data-url="{{item}}" bindtap="tapImage" />
+      </view>
+    </view>
+    <!-- 第三块 -->
+    <view class="info__block-three">
+      <view class="info__list">
+        <text class="font-color-grey">审批流程</text>
+      </view>
+      <view class="info__process" wx:for="{{orderInfo.order_examine}}" wx:for-item="item" wx:for-index="idx" wx:key="id">
+        <view><image src="{{examState[item.examine_state].icon}}" /><text>{{item.member.real_name}}  {{examState[item.examine_state].label}}</text></view>
+        <text>{{item.created_at}}</text>
+      </view>
+    </view>
+  </block>
+
+
+  <!-- 底部按钮 -->
+  <block wx:if="{{userType!=3&&userType!=4}}">
+    <view class="button__report" wx:if="{{orderInfo.order_state==10}}">
+      <view class="button__withte" bindtap="copyReport">复制报备信息</view>
+      <view class="button__yellow" wx:if="{{orderInfo.order_rate==10}}" bindtap="tapReport">确认报备</view>
+      <view class="button__submit-fill" wx:if="{{orderInfo.order_rate==20}}" bindtap="tapTakeLook">下一步（带看）</view>
+    </view>
+
+    <view class="button__blue" wx:if="{{orderInfo.order_state==20}}" bindtap="tapSubscription">下一步（认购）</view>
+    <view class="info__button" wx:if="{{orderInfo.order_state==30}}">
+      <view class="font-color-grey" wx:if="{{orderInfo.revoke==1}}" >提交取消申请</view>
+      <view class="button__confirm" wx:if="{{orderInfo.revoke==2}}" bindtap="tapApply">提交取消申请</view>
+      <view class="button__submit" bindtap="tapDeal">下一步（成交）</view>
+    </view>
+    <view class="button__red" wx:if="{{orderInfo.order_state==40}}" bindtap="tapCancel">提交取消申请</view>
+    <view class="info__button" wx:if="{{orderInfo.order_state==50||orderInfo.order_state==60}}">
+      <view class="font-color-grey" bindtap="tapWithdraw">撤回审批</view>
+      <view class="button__submit" bindtap="tapAgain">重新提交</view>
+    </view>
+  </block>
+  <block wx:else>
+    <view class="info__button" wx:if="{{orderInfo.examine==1&&userType==3}}">
+      <view class="font-color-grey" bindtap="tapReject">驳回</view>
+      <view class="button__submit" bindtap="tapAgree">同意</view>
+    </view>
+    <view class="info__button" wx:if="{{orderInfo.examine==2&&userType==4}}">
+      <view class="font-color-grey" bindtap="tapReject">驳回</view>
+      <view class="button__submit" bindtap="tapAgree">同意</view>
+    </view>
+  </block>
+  <!-- 图片弹出框 -->
+  <van-popup show="{{ previewShow }}" bind:close="onClosePopup">
+    <image src="{{previewImg}}"></image>
+  </van-popup>
+  <van-toast id="van-toast" />
+  <!-- 修改佣金弹出框 -->
+  <van-popup show="{{ showModifyCom }}" round bind:close="onCloseCommission">
+    <view class="com__title">修改实际佣金金额</view>
+    <view class="com__money">
+      <text class="font-color-grey">当前金额：</text>
+      <text class="font-color-red">{{orderInfo.actual_commission}}元</text>
+    </view>
+    <view class="com__input">
+      <van-field value="{{newCommission}}" border="{{ false }}" placeholder="请输入金额" bind:change="tapComInput" />
+    </view>
+    <view class="com__button">
+      <view class="combutton__grey" bindtap="onCloseCommission">放弃修改</view>
+      <view class="combutton__red" bindtap="onConfirmCommission">保存修改</view>
+    </view>
+  </van-popup>
+</view>
+
+

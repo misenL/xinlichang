@@ -1,0 +1,22 @@
+<view class="house__list" bindtap="tapHouse">
+  <van-image width="240px" height="150px" fit="fill" src="{{hintroduceData.cover_image}}"/>
+  <view class="house__info">
+    <view class="info__text">
+      <view class="text__one">
+        <text class="house__name">{{hintroduceData.house_type.name}}{{hintroduceData.office}}厅{{hintroduceData.kitchen}}厨{{hintroduceData.toilet}}卫</text>
+        <text class="house__loc">建面：{{hintroduceData.area}}㎡ / {{hintroduceData.direction}}</text>
+      </view>
+      <view><text class="house__money">约{{hintroduceData.money}}万/套</text></view>
+    </view>
+  </view>
+  <view class="house__commission" wx:if='{{hintroduceData.isType}}'>
+    <view class="commission__pla">
+      <text class="pla1">白金会员</text>
+      <text class="pla2">17%</text>
+    </view>
+    <view class="commission__ord">
+      <text class="ord1">普通会员</text>
+      <text class="ord2">7%+2000元</text>
+    </view>
+  </view>
+</view>

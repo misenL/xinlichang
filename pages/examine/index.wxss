@@ -1,0 +1,49 @@
+/* pages/phoneLogin/index.wxss */
+
+page{
+  overflow-y: hidden;
+}
+.container {
+  background: #ffffff;
+}
+.examine__page {
+  padding-top: 50px;
+}
+.examine__page image {
+  width: 100px;
+  height: 100px;
+  margin-bottom: 15px;
+}
+.examine__page text {
+  font-size: 18px;
+}
+.examine__success,
+.examine__loding,
+.examine__warning {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.confrim__button {
+  width: 342px;
+  height: 48px;
+  background: rgba(255, 202, 75, 1);
+  border-radius: 4px;
+  font-size: 18px;
+  color: rgba(139, 87, 42, 1);
+  text-align: center;
+  line-height: 48px;
+  margin-top: 25px;
+}
+.loding__text {
+  color: rgba(0, 0, 0, 0.65);
+  font-size: 13px!important;
+  text-align: center;
+  line-height: 25px;
+  margin-top: 15px;
+}
+.examine__warning .confrim__button {
+  background: rgba(255, 199, 69, 0.15);
+  border: 1px solid rgba(139, 87, 42, 0.65);
+}

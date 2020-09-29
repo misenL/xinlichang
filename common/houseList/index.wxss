@@ -1,0 +1,68 @@
+.van-image {
+  display: block!important;
+
+}
+.house__list {
+  background: rgb(255, 255, 255);
+  padding: 12px;
+  border-bottom: 1px solid #F0F5FB
+}
+.house__info {
+  display: flex;
+  justify-content: flex-start;
+}
+.info__text {
+  padding-left: 12px;
+}
+.text__one {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.house__name {
+  font-size: 16px;
+  font-family: '苹方-简';
+  margin-right: 10px
+}
+.house__money {
+  font-size: 16px;
+  color: #E74C3C;
+  display: block;
+  margin-top: 2px;
+}
+.house__loc {
+  font-size: 11px;
+  color: rgba(0, 0, 0, .65);
+  display: block;
+  margin-top: 8px;
+}
+.house__commission {
+  display: flex;
+  justify-content: flex-start;
+}
+.commission__pla,
+.commission__ord {
+  margin: 10px 10px 0 0;
+}
+.commission__pla text,
+.commission__ord text {
+  padding: 2px 5px;
+  font-size: 11px;
+}
+.pla1, .ord1 {
+  background: rgba(176, 130, 78, 1);
+  border: 1px solid rgba(176, 130, 78, 1);
+  border-radius: 3px 0 0 3px;
+  color: rgba(255, 255, 255, 1);
+  font-family: '苹方-简 常规体';
+}
+.pla2, .ord2 {
+  background: rgba(243, 156, 18, 0.45);
+  border: 1px solid rgba(139, 87, 42, 0.65);
+  border-radius: 0 3px 3px 0;
+  color: rgba(139, 87, 42, 1);
+  font-family: '苹方-简 中黑体';
+}
+.ord2 {
+  background: rgba(255, 199, 69, 0.15);
+}

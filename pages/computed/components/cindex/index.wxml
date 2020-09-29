@@ -1,0 +1,108 @@
+<!--pages/computed/components/cindex/index.wxml-->
+<view class="calWrap" style="padding-top: {{ height }}px">
+        <view class="cal_top topjianbian">
+            <view class="cal_nav displayflex" >
+                <view class="cal_changenav outer_bx flexli  {{type == 0 ? 'current' : '' }}" bindtap="showType" data-type="0" data-name="benxi">等额本息</view>
+                <view class="cal_changenav outer_bj flexli {{type == 1 ? 'current' : '' }}" bindtap="showType" data-type="1" data-name="benjin">等额本金</view>
+            </view>
+            <view class="cal_result displayflex">
+                <view class="cal_resultli flexli">
+                    <view class="cal_title">参考月供(元)</view>
+                    <view class="cal_price cal_price_hook">{{result.yuegong}}</view>
+                    <view class="cal_hktotal">还款总额(元)
+                        <span class="htotalnum">{{result.totalPrice}}万</span>
+                    </view>
+                </view>
+                <view class="cal_resultli flexli">
+                    <view class="cal_title cal_dijian">{{type == 1 ? '每月递减(元)' : ''}}</view>
+                    <view class="cal_price cal_dijianprice">{{type == 1 ? result.yuegongdijian : ''}}</view>
+                    <view class="cal_hktotal cal_right">支付利息(元)
+                        <span class="htotallixinum">{{result.totalLixi}}万</span>
+                    </view>
+                </view>
+            </view>
+            <view class="cal_benxiinfo" bindtap="showResult">
+                <a class="cal_bxfont" id="typethml" href="#">等额本息还款详情</a>
+                <view class="cal_bxicon"></view>
+            </view>
+        </view>
+
+
+        <view class="cal_form">
+            <!-- 贷款类型 -->
+            <view class="cal_li border_bottom" data-sheet="loanTyle" bindtap="showCalSheet">
+                <view class="cal_leftname">贷款类型</view>
+                <view class="cal_rightselect">
+                    {{calName}}
+                    <view class="rightrow"></view>
+                </view>
+            </view>
+
+            <!-- 公积金展示 -->
+            <view wx:if="{{calType === 1 || calType === 2}}">
+                <view class="cal_li border_bottom gjj_hook" >
+                    <view class="cal_leftname dkname" data-zuhe="公积金贷款金额">{{calType === 2 ? '公积金贷款金额' : '贷款金额'}}</view>
+                    <view class="cal_rightselect">
+                        <!-- onkeyup="if(isNaN(value))execCommand('undo')" onafterpaste="if(isNaN(value))execCommand('undo')" -->
+                        <input type="tel" model:value="{{gjj_money}}" placeholder="请输入金额" maxlength="7" class="lannum gjjf" bindinput="handelComputed" />
+                        <span>万</span>
+                    </view>
+                </view>
+
+                <view class="cal_li border_bottom gjj_hook" data-sheet="loanyear" data-ltype="1" bindtap="showCalSheet">
+                    <view class="cal_leftname">贷款年限</view>
+                    <view class="cal_rightselect">
+                        {{gjj_year}}年
+                        <view class="rightrow"></view>
+                    </view>
+                </view>
+
+                <view class="cal_li gjj_hook" data-sheet="gjjSelect" bindtap="showCalSheet">
+                    <view class="cal_leftname">公积金利率</view>
+                    <view class="cal_rightselect">
+                        {{gjj_lil.name}}
+                        <view class="rightrow"></view>
+                    </view>
+                </view>
+            </view>
+
+
+            <!-- 商业贷款 -->
+            <view wx:if="{{calType === 0 || calType === 2}}">
+                <view class="cal_li border_bottom  shangdai_hook sdfund">
+                    <view class="cal_leftname dkname" data-zuhe="商业贷款金额">{{calType === 2 ? '商业贷款金额' : '贷款金额'}}</view>
+                    <view class="cal_rightselect">
+                        <!-- onkeyup="if(isNaN(value))execCommand('undo')" onafterpaste="if(isNaN(value))execCommand('undo')" -->
+                        <input type="tel" model:value="{{loan_money}}" placeholder="请输入金额" maxlength="7"  class="lannum shangyef" bindinput="handelComputed" />
+                        <span>万</span>
+                    </view>
+                </view>
+
+                <view class="cal_li border_bottom shangdai_hook" data-sheet="loanyear" data-ltype="0" bindtap="showCalSheet">
+                    <view class="cal_leftname">贷款年限</view>
+                    <view class="cal_rightselect">
+                         {{loan_year}}年
+                        <view class="rightrow"></view>
+                    </view>
+                </view>
+
+                <view class="cal_li shangdai_hook" data-sheet="shangdaiSelect" bindtap="showCalSheet">
+                    <view class="cal_leftname">商贷利率</view>
+                    <view class="cal_rightselect">
+                        {{loan_lil.name}}
+                        <view class="rightrow"></view>
+                    </view>
+                </view>
+            </view>
+        </view> 
+
+
+</view>
+
+    <van-action-sheet
+        show="{{ show }}"
+        actions="{{ actions }}"
+        close-on-click-action="true"
+        z-index='999999'
+        bind:select="onSelectSheet"
+    />

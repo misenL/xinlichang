@@ -1,0 +1,7 @@
+<!--logs.wxml-->
+<nav-bar navbar-data='{{nvabarData}}' />
+<view class="container">
+  <image src="../../assets/images/lodingCode.png"></image>
+  <view class="more__code">更多功能正在开发中</view>
+  <text class="lod__code">敬请期待…</text>
+</view>

@@ -1,0 +1,24 @@
+<!--pages/phoneLogin/index.wxml-->
+<!-- 引入自定义导航 -->
+<nav-bar navbar-data='{{nvabarData}}'></nav-bar>
+<view class="container" style="margin-top: {{ height }}px">
+  <view class="examine__page">
+    <view class="examine__success" wx:if='{{examineType==1}}'>
+      <image src="../../assets/images/success.png"></image>
+      <text>恭喜您审核通过</text>
+      <view class="confrim__button" bindtap="tapConfirm">确定</view>
+    </view>
+    <view class="examine__loding" wx:if='{{examineType==3}}'>
+      <image src="../../assets/images/vriLoding.png"></image>
+      <text>您的信息已提交成功</text>
+      <text class="loding__text">请及时关注审核状态，
+      我们将在3个工作日内对您的信息进行审核。</text>
+      <view class="confrim__button">确认</view>
+    </view>
+    <view class="examine__warning" wx:if='{{examineType==2}}'>
+      <image src="../../assets/images/warning.png"></image>
+      <text>抱歉，您的审核未通过</text>
+      <view class="confrim__button" bindtap="tapModifyInfo">修改信息</view>
+    </view>
+  </view>
+</view>

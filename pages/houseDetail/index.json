@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "户型详情",
+  "usingComponents": {
+    "house-list": "../../common/houseList/index",
+    "nav-bar": "../../common/navbar/index",
+    "bottom-sticky": "../../common/bottomSticky/index"
+  }
+}

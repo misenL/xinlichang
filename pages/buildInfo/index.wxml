@@ -1,0 +1,82 @@
+<!-- buildInfo.wxml-->
+<!-- 引入自定义导航 -->
+<nav-bar navbar-data='{{nvabarData}}'></nav-bar>
+<view class="container" style="margin-top: {{ height }}px">
+
+  <view class="detail__tabs" style="top: {{height}}px">
+    <van-tabs swipe-threshold="4" color="rgba(245, 166, 35, 1)" line-width="25" swipeable="true" animated="true" active="{{ active }}" bind:click="onClick">
+      <van-tab title="基础信息">
+      </van-tab>
+      <van-tab title="销售信息">
+      </van-tab>
+      <van-tab title="小区概括">
+      </van-tab>
+      <van-tab title="预售许可证">
+      </van-tab>
+    </van-tabs>
+  </view>
+  <view class="detail__info" bindtouchstart="touchStart"  bindtouchend="touchEnd">
+      <view id="D1" class="base__info">
+        <text>基础信息</text>
+        <!-- 本来可以循环的，后端居然没给我整理好~~！！！！！ -->
+        <view>
+          <view class="info__list"><text class="list__name">楼盘别名：</text><text class="list__content">{{buildData.nickname}}</text></view>
+          <view class="info__list"><text class="list__name">楼盘特色：</text><text class="list__content">{{buildData.characteristic}}</text></view>
+          <view class="info__list"><text class="list__name">参考均价：</text><text class="list__content">{{buildData.average_price}}</text></view>
+          <view class="info__list"><text class="list__name">参考总价：</text><text class="list__content">{{buildData.total_price}}</text></view>
+          <view class="info__list"><text class="list__name">物业类型：</text><text class="list__content">{{buildData.house_type[0].data[0].build_type.name}}</text></view>
+          <view class="info__list"><text class="list__name">建筑类型：</text><text class="list__content">{{buildData.architecture_type}}</text></view>
+          <view class="info__list"><text class="list__name">装修标准：</text><text class="list__content">{{buildData.renovation}}</text></view>
+          <view class="info__list"><text class="list__name">产权年限：</text><text class="list__content">{{buildData.years}}</text></view>
+          <view class="info__list"><text class="list__name">开发商：</text><text class="list__content">{{buildData.company}}</text></view>
+          <view class="info__list"><text class="list__name">所在区域：</text><text class="list__content">{{buildData.area.shortname}}区</text></view>
+          <view class="info__list"><text class="list__name">楼盘地址：</text><text class="list__content">{{buildData.address}}</text></view>
+        </view>
+      </view>
+      <view id="D2" class="sale__info">
+        <text>销售信息</text>
+        <!-- 本来可以循环的，后端居然没给我整理好~~！！！！！ -->
+        <view>
+          <view class="info__list"><text class="list__name">售卖状态：</text><text class="list__content">{{buildData.state==1?'未开盘':buildData.state==2?'在售':'售罄'}}</text></view>
+          <view class="info__list"><text class="list__name">售楼地址：</text><text class="list__content">{{buildData.sell_address}}</text></view>
+          <view class="info__list"><text class="list__name">售卖楼栋：</text><text class="list__content">{{buildData.sell_nums}}栋</text></view>
+          <view class="info__list">
+            <text class="list__name">售卖户型：</text><text class="list__content">{{buildData.house_type_name}}</text>
+            <image src="../../assets/icon/arrowRight.png"></image>
+          </view>
+          <view class="info__list"><text class="list__name">最新开盘：</text><text class="list__content">{{buildData.start_time}}</text></view>
+          <view class="info__list"><text class="list__name">最近交房：</text><text class="list__content">{{buildData.deliver_time}}</text></view>
+        </view>
+      </view>
+      <view id="D3" class="estate__info">
+        <text>小区概况</text>
+        <view>
+          <view class="info__list"><text class="list__name">占地面积：</text><text class="list__content">{{buildData.occupy_area}}m²</text></view>
+          <view class="info__list"><text class="list__name">建筑面积：</text><text class="list__content">{{buildData.build_area}}m²</text></view>
+          <view class="info__list"><text class="list__name">容积率：</text><text class="list__content">{{buildData.plot_rate}}%</text></view>
+          <view class="info__list"><text class="list__name">绿化率：</text><text class="list__content">{{buildData.green_rate}}%</text></view>
+          <view class="info__list"><text class="list__name">规划车位：</text><text class="list__content">{{buildData.parking_place}}</text></view>
+          <view class="info__list"><text class="list__name">车位配比：</text><text class="list__content">{{buildData.parking_place_percentage}}</text></view>
+          <view class="info__list"><text class="list__name">规划楼栋：</text><text class="list__content">{{buildData.build_nums}}栋</text></view>
+          <view class="info__list"><text class="list__name">规划户型：</text><text class="list__content">{{buildData.house_type_nums}}户</text></view>
+          <view class="info__list"><text class="list__name">物业公司：</text><text class="list__content">{{buildData.property_company}}</text></view>
+          <view class="info__list"><text class="list__name">物业费用：</text><text class="list__content">{{buildData.property_cost}}元/㎡/月</text></view>
+          <view class="info__list"><text class="list__name">供暖方式：</text><text class="list__content">{{buildData.heating_method}}</text></view>
+          <view class="info__list"><text class="list__name">供水：</text><text class="list__content">{{buildData.water}}</text></view>
+          <view class="info__list"><text class="list__name">供电：</text><text class="list__content">{{buildData.electric}}</text></view>
+        </view>
+      </view>
+      <view id="D4" class="licence__info">
+        <text>预售许可证</text>
+        <view>
+          <view class="info__list"><text class="list__name">预售证：</text><text class="list__content">{{buildData.certificates}}</text></view>
+          <view class="info__list"><text class="list__name">发证时间：</text><text class="list__content">{{buildData.certificates_time}}</text></view>
+          <view class="info__list"><text class="list__name">绑定楼栋：</text><text class="list__content">{{buildData.bind_build}}</text></view>
+        </view>
+      </view>
+
+  </view>
+</view>
+<bottom-sticky bsticky-data='{{bstickyData}}' />
+
+

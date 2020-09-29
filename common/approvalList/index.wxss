@@ -1,0 +1,71 @@
+/* pages/approvalList/index.wxss */
+
+.font-color-grey {
+  color: rgba(0, 0, 0, 0.45);
+  font-size: 14px;
+}
+.font-size-14 {
+  font-size: 14px
+}
+.font-color-red {
+  color: rgba(231, 76, 60, 1)
+}
+.font-color-orange {
+  color: rgba(230, 126, 34, 1)
+}
+.approval__list {
+  background: rgba(255, 255, 255, 1);
+  padding: 10px 16px;
+  margin-top: 10px;
+}
+.list__number {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(230, 230, 230, 1);
+  padding: 5px 0 10px;
+  margin-bottom: 5px;
+}
+.conten-grid {
+  padding: 6px 0;
+  display: grid;
+  grid-template-columns: 1.2fr 1.5fr 1.2fr 1.5fr;
+  justify-items: start;
+  align-items: center;
+}
+.list__button {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0 5px;
+}
+.button__confirm {
+  color: rgba(231, 76, 60, 1)!important;
+  border: 1px solid rgba(248, 89, 89, 1)!important;
+}
+.list__button view {
+  width: 165px;
+  height: 34px;
+  border: 1px solid rgba(0, 0, 0, 0.25);
+  border-radius: 4px;
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.65);
+  text-align: center;
+  line-height: 34px;
+}
+.list__operation {
+  color: rgba(0, 0, 0, 0.45);
+  font-size: 14px;
+  text-align: center;
+  height: 48px;
+  line-height: 48px;
+  width: 342px;
+  border-top: 1px solid rgba(230, 230, 230, 1);
+  margin: 10px 0 -10px;
+}
+.button__submit {
+  color: rgba(74, 144, 226, 1)!important;
+  border: 1px solid rgba(74, 144, 226, 1)!important;
+}
+
+

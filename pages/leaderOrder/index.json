@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "nav-bar": "../../common/navbar/index",
+    "approval-list": "../../common/approvalList/index",
+    "order-list": "../../common/orderList/index"
+    
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "潜在客户",
+  "usingComponents": {
+    "house-introduce": "../../common/houseIntroduce/index",
+    "nav-bar": "../../common/navbar/index",
+    "bottom-sticky": "../../common/bottomSticky/index"
+  }
+}

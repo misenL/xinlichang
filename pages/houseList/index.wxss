@@ -1,0 +1,11 @@
+/* houseList */
+
+.container {
+  background: rgba(240, 245, 251, 1);
+}
+.house__list {
+  background: rgba(255, 255, 255, 1);
+  margin-top: 8px;
+  padding: 0 15px;
+  margin-bottom: 3vh;
+}

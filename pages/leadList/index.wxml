@@ -1,0 +1,82 @@
+<!-- pages/leadList/index.wxml -->
+<!-- 引入自定义导航 -->
+<nav-bar navbar-data='{{nvabarData}}'></nav-bar>
+<view class="container" style="padding-top: {{ height }}px">
+    <view class="customer_list">
+        <view class="list__tabs">
+            <van-tabs bind:click="selectTab" sticky active="{{ active }}" offset-top="{{height}}" swipe-threshold="4" color="rgba(245, 166, 35, 1)" line-width="25" swipeable="true" animated="true">
+                <van-tab title="{{t_item}}" wx:for="{{tabList}}" wx:for-item="t_item" wx:for-index="t_index" wx:key="t_index">
+                    <view class="customer_ul">
+                        <view class="customer_li" wx:for="{{customerList}}" wx:for-item="c_item" wx:for-index="c_index" wx:key="c_index">
+                            <view class="customer_id">
+                                <text class="id_title">ID：</text>
+                                {{c_item.id}}
+                            </view>
+                            <view class="user_info" data-phone="{{c_item.phone}}" bindtap="makeCall">
+                                <van-image round width="48px" height="48px" src="{{c_item.avatarUrl}}" />
+                                <view class="info_box">
+                                    <view class="user_name">{{c_item.nickName}}</view>
+                                    <view class="native_place">
+                                        <view class="box_left" wx:if="{{c_item.gender == 2}}">
+                                            女
+                                        </view>
+                                        <view class="box_left" wx:if="{{c_item.gender == 1}}">
+                                            男
+                                        </view>
+                                        <view class="box_left" wx:if="{{c_item.gender == 0}}">
+                                            未知
+                                        </view>
+                                        <view class="box_left">
+                                            {{c_item.province}}{{c_item.city}}
+                                        </view>
+                                        <view class="phone">{{c_item.phone}}</view>
+                                    </view>
+                                </view>
+                            </view>
+                            <view class="properties">
+                                <view class="properties_head">
+                                    <view class="properties_title">浏览楼盘/房型</view>
+                                    <view class="properties_title" data-id="{{c_item.id}}" data-index="{{c_index}}" bindtap="toClick" wx:if="{{c_item.customer_browse.length > 3}}">
+                                        <text>{{c_item.isOpen?'展开全部':'收起'}}</text>
+                                        <!-- <text  wx:if="{{c_item.isOpen}}" wx:else>收起</text> -->
+                                        <van-icon class="{{c_item.isOpen?'arrow_end':'arrow_start'}}" name="arrow-down" color="#7F7F7F" size="20px" />
+                                    </view>
+                                </view>
+                                <view class="moren {{!c_item.isOpen?'properties_content':'content_close'}}">
+                                    <view class="properties_li" wx:for="{{c_item.customer_browse}}" wx:for-item="b_item" wx:for-index="b_index" wx:key="b_index">
+                                        <view>{{b_item.build.name}}</view>
+                                        <view wx:if="{{b_item.household_id != 0}}">
+                                            / {{b_item.household.name}}
+                                        </view>
+                                    </view>
+                                </view>
+                                <view class="browse_time">
+                                    <text class="box_left">浏览时间：</text>
+                                    <text>{{c_item.browse_time}}</text>
+                                </view>
+                                <view class="browse_time retention_time">
+                                    <view>
+                                        <text class="box_left">停留时间：</text>
+                                        <text>{{c_item.residence_time}}秒</text>
+                                    </view>
+                                    <view class="contact">
+                                        <text class="box_left">主动联系：</text>
+                                        <text wx:if="{{c_item.is_active == 1}}">是</text>
+                                        <text wx:if="{{c_item.is_active == 2}}">否</text>
+                                    </view>
+                                </view>
+                            </view>
+                        </view>
+                        <view class="noData" wx:if="{{customerList.length == 0}}">没有数据哦~</view>
+                        <view class="noData" wx:if="{{customerList.length < total}}" bindtap="clickLoad">
+                            点击加载更多
+                        </view>
+                        <view class="noData" wx:if="{{customerList.length == total &&  customerList.length > 0}}">
+                            到底啦~
+                        </view>
+                    </view>
+                </van-tab>
+            </van-tabs>
+        </view>
+    </view>
+</view>

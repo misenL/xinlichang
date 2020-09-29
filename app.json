@@ -1,0 +1,102 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/login/index",
+    "pages/orderInfoStationed/index",
+    "pages/orderInfoReport/index",
+    "pages/orderInfo/index",
+    "pages/cancelOrder/index",
+    "pages/formInput/index",
+    "pages/leaderOrder/index",
+    "pages/reportOrder/index",
+    "pages/register/index",
+    "pages/searchPage/index",
+    "pages/lodingCode/logs",
+    "pages/chooseCity/index",
+    "pages/examine/index",
+    "pages/phoneLogin/index",
+    "pages/buildTrend/index",
+    "pages/buildDetail/index",
+    "pages/buildInfo/index",
+    "pages/houseList/index",
+    "pages/houseDetail/index",
+    "pages/my/index",
+    "pages/leadList/index",
+    "pages/invite/index",
+    "pages/computed/index"
+  ],
+  "window": {
+    "backgroundColor": "#FFCA4A",
+    "backgroundColorTop": "#FFCA4A",
+    "backgroundColorBottom": "#FFCA4A",
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#ffca4a",
+    "navigationBarTitleText": "新立场",
+    "navigationBarTextStyle": "black",
+    "navigationStyle": "custom",
+    "enablePullDownRefresh": true
+  },
+  "tabBar": {
+    "backgroundColor": "#ffffff",
+    "color": "#9A9A9A",
+    "selectedColor": "#FFCA4A",
+    "borderStyle": "black",
+    "list": [
+      {
+        "selectedIconPath": "assets/tabBar/Fhome.png",
+        "iconPath": "assets/tabBar/Nhome.png",
+        "pagePath": "pages/index/index",
+        "text": "首页"
+      },
+      {
+        "selectedIconPath": "assets/tabBar/Fdingdan.png",
+        "iconPath": "assets/tabBar/Ndingdan.png",
+        "pagePath": "pages/leaderOrder/index",
+        "text": "订单"
+      },
+      {
+        "selectedIconPath": "assets/tabBar/Fuser.png",
+        "iconPath": "assets/tabBar/Nuser.png",
+        "pagePath": "pages/my/index",
+        "text": "我的"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json",
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于小程序位置导航"
+    }
+  },
+  "usingComponents": {
+    "van-skeleton": "@vant/weapp/skeleton/index",
+    "van-button": "@vant/weapp/button/index",
+    "van-switch": "@vant/weapp/switch/index",
+    "van-image": "@vant/weapp/image/index",
+    "van-tag": "@vant/weapp/tag/index",
+    "van-search": "@vant/weapp/search/index",
+    "van-dropdown-menu": "@vant/weapp/dropdown-menu/index",
+    "van-dropdown-item": "@vant/weapp/dropdown-item/index",
+    "van-tab": "@vant/weapp/tab/index",
+    "van-tabs": "@vant/weapp/tabs/index",
+    "van-sticky": "@vant/weapp/sticky/index",
+    "van-action-sheet": "@vant/weapp/action-sheet/index",
+    "van-sidebar": "@vant/weapp/sidebar/index",
+    "van-sidebar-item": "@vant/weapp/sidebar-item/index",
+    "van-checkbox": "@vant/weapp/checkbox/index",
+    "van-checkbox-group": "@vant/weapp/checkbox-group/index",
+    "van-tree-select": "@vant/weapp/tree-select/index",
+    "van-field": "@vant/weapp/field/index",
+    "van-notice-bar": "@vant/weapp/notice-bar/index",
+    "van-icon": "@vant/weapp/icon/index",
+    "van-uploader": "@vant/weapp/uploader/index",
+    "van-popup": "@vant/weapp/popup/index",
+    "van-toast": "@vant/weapp/toast/index",
+    "van-cell": "@vant/weapp/cell/index",
+    "van-collapse": "@vant/weapp/collapse/index",
+    "van-collapse-item": "@vant/weapp/collapse-item/index",
+    "van-datetime-picker": "@vant/weapp/datetime-picker/index",
+    "van-dialog": "@vant/weapp/dialog/index",
+    "van-overlay": "@vant/weapp/overlay/index"
+  }
+}

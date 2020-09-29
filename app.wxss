@@ -1,0 +1,14 @@
+/**app.wxss**/
+/**app.wxss**/
+pages {
+  position: relative;
+  z-index: 9999998;
+  background: rgb(255, 202, 74);
+}
+
+.container {
+  height: 100%;
+  min-height: 100vh;
+  background: rgb(255, 202, 74);
+  box-sizing: border-box;
+}

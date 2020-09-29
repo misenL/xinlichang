@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "户型列表",
+  "usingComponents": {
+    "house-list": "../../common/houseList/index",
+    "nav-bar": "../../common/navbar/index"
+  }
+}

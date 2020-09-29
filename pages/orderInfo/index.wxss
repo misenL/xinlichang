@@ -1,0 +1,220 @@
+/* pages/orderInfo/index.wxss */
+
+.container {
+  background: rgba(240, 245, 251, 1);
+}
+.font-color-grey {
+  color: rgba(0, 0, 0, 0.45);
+  font-size: 14px;
+  min-width: 70px;
+}
+.font-size-14 {
+  font-size: 14px
+}
+.font-color-red {
+  color: rgba(231, 76, 60, 1)
+}
+.font-color-blue {
+  color: rgba(0, 122, 255, 1)
+}
+.button__report {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.button__withte {
+  color: rgba(0, 0, 0, 0.65);
+  background: rgba(255, 255, 255, 1);
+  border-radius: 4px;
+  width: 162px;
+  height: 40px;
+  text-align: center;
+  line-height: 40px;
+  margin: 20px auto;
+  border: 1px solid rgba(0, 0, 0, 0.25);
+  font-size: 14px;
+}
+.house__list {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+.text__wrap {
+  word-wrap:break-word;
+  word-break:normal;
+  width: 70vw;
+}
+.info__block-one,
+.info__block-two,
+.info__block-three {
+  padding: 0 16px 16px;
+  margin-bottom: 8px;
+  background: #ffffff;
+}
+.info__block-three {
+  margin-bottom: 90px;
+}
+.order__number {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  border-bottom: 1px solid rgba(230, 230, 230, 1);
+  padding: 10px 0;
+  margin-bottom: 5px;
+}
+.info__list {
+  padding: 5px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.info__file {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-row-gap: 8px;
+  grid-column-gap: 8px;
+}
+.info__file image {
+  width: 80px;
+  height: 80px;
+}
+.info__process {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+  padding: 3px 0;
+}
+.info__process image {
+  width: 28px;
+  height: 28px;
+}
+.info__process view {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.info__process view text {
+  font-size: 14px;
+}
+.info__button {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  padding: 10px 0 5px;
+  background: #ffffff;
+  position: fixed;
+  bottom: 0;
+  width: 100vw;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  height: 60px;
+}
+.info__button view {
+  width: 165px;
+  height: 34px;
+  border: 1px solid rgba(0, 0, 0, 0.25);
+  border-radius: 4px;
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.65);
+  text-align: center;
+  line-height: 34px;
+}
+.button__confirm {
+  color: rgba(231, 76, 60, 1)!important;
+  border: 1px solid rgba(248, 89, 89, 1)!important;
+}
+.button__submit {
+  color: rgba(74, 144, 226, 1)!important;
+  border: 1px solid rgba(74, 144, 226, 1)!important;
+}
+.button__submit-fill {
+  color: rgba(74, 144, 226, 1)!important;
+  border: 1px solid rgba(74, 144, 226, 1)!important;
+  background: #ffffff;
+  border-radius: 4px;
+  width: 162px;
+  height: 40px;
+  text-align: center;
+  line-height: 40px;
+  margin: 20px auto;
+  font-size: 14px;
+}
+.button__yellow {
+  color: rgba(139, 87, 42, 1);
+  background: rgba(255, 202, 75, 1);
+  border-radius: 4px;
+  width: 162px;
+  height: 40px;
+  text-align: center;
+  line-height: 40px;
+  margin: 20px auto;
+  font-size: 14px;
+}
+.button__blue {
+  color: rgba(74, 144, 226, 1);
+  background: rgba(255, 255, 255, 1);
+  border: 1px solid rgba(74, 144, 226, 1);
+  border-radius: 4px;
+  width: 320px;
+  height: 44px;
+  text-align: center;
+  line-height: 44px;
+  margin: 10px auto;
+}
+.button__red {
+  color: rgba(231, 76, 60, 1);
+  background: rgba(255, 255, 255, 1);
+  border: 1px solid rgba(231, 76, 60, 1);
+  border-radius: 4px;
+  width: 320px;
+  height: 44px;
+  text-align: center;
+  line-height: 44px;
+  margin: 10px auto;
+}
+.van-popup--center {
+  width: 90vw;
+  height: 35vh;
+  top: 30%!important;
+}
+.com__input {
+  margin: 0 16px;
+}
+.com__title {
+  text-align: center;
+  font-size: 16px;
+  padding: 16px 0;
+  border-bottom: 1px solid rgba(204, 204, 204, 1)
+}
+.com__button {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 5px 0;
+}
+.com__input {
+  border: 1px solid rgba(204, 204, 204, 1);
+  border-radius: 4px;
+}
+.com__money,
+.com__button {
+  font-size: 14px;
+  padding: 18px 16px;
+}
+.combutton__grey,
+.combutton__red {
+  width: 140px;
+  height: 36px;
+  text-align: center;
+  line-height: 40px;
+  border-radius: 4px;
+}
+.combutton__grey {
+  border: 1px solid rgba(0, 0, 0, 0.25);
+  color: rgba(0, 0, 0, 0.65);
+}
+.combutton__red {
+  border: 1px solid rgba(248, 89, 89, 1);
+  color: rgba(231, 76, 60, 1)
+}

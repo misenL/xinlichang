@@ -1,0 +1,27 @@
+<!-- pages/phoneLogin/index.wxml -->
+<!-- 引入自定义导航 -->
+<nav-bar navbar-data='{{nvabarData}}'></nav-bar>
+<view class="container" style="margin-top: {{ height }}px">
+  <view class="phone__login">
+    <view class="login__content">
+      <text class="login__title">手机快捷登录</text>
+      <van-cell-group>
+        <van-field value="{{ userphone }}" type="number" clearable label="手机号" placeholder="请输入手机号码" data-name="{{'userphone'}}" bind:click-icon="onClickIcon" bind:change="onChange" />
+        <van-field value="{{ verify }}" type="number" clearable label="验证码" data-name="{{'verify'}}" placeholder="请输入验证码" bind:change="onChange">
+          <text wx:if="{{isTime===30}}" slot="button" bindtap="clickVeriImg" class="get__verify">{{isVerify}}</text>
+          <text wx:else slot="button" class="verify__time">{{isTime}}s</text>
+        </van-field>
+      </van-cell-group>
+      <view class="login__button" bindtap="confirm">登录</view>
+    </view>
+  </view>
+  <!-- <van-popup show="{{ imgCodeShow }}" bind:close="onClose">
+    <image style="width: 230px; height: 160px" src="{{codeImgSrc}}"></image>
+    <van-field value="{{ imgCode }}" clearable placeholder="请输入图中验证码" input-align="right" data-name="{{'imgCode'}}" bind:change="onChange" use-button-slot>
+      <van-button bind:click="clickVeriImg" slot="button" size="small" type="primary">
+        确认
+      </van-button>
+    </van-field>
+  </van-popup> -->
+  <van-toast id="van-toast" />
+</view>

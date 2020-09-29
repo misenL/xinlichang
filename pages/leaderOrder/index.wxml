@@ -1,0 +1,46 @@
+<!--pages/leaderOrder/index.wxml-->
+<!-- 引入自定义导航 -->
+<nav-bar bind:childTabs="bindTabData" navbar-data='{{nvabarData}}'></nav-bar>
+<view class="container" style="margin-top: {{ height }}px">
+  <!-- 审批 -->
+  <view class="leader__approval" wx:if="{{checkPage==0}}">
+    <view class="approval__tabs">
+      <van-tabs color="rgba(245, 166, 35, 1)" swipeable="true" line-width="25" active="{{ topActive }}" bind:change="onChangeAppro">
+        <van-tab title="待我处理">
+          <approval-list bind:childAppro="getApproData" wx:for="{{approData}}" wx:for-item="item" wx:for-index="idx" wx:key="id" applist-data="{{item}}" />
+        </van-tab>
+        <van-tab title="我已处理">
+          <approval-list bind:childAppro="getApproData" wx:for="{{approData}}" wx:for-item="item" wx:for-index="idx" wx:key="id" applist-data="{{item}}" />
+        </van-tab>
+        <!-- <van-tab title="我发起的">
+          <approval-list />
+        </van-tab> -->
+      </van-tabs>
+    </view>
+  </view>
+  <!-- 订单 -->
+  <view class="leader__order" wx:if="{{checkPage==1}}">
+    <view class="order__tabs">
+      <van-tabs color="rgba(245, 166, 35, 1)" swipeable="true" line-width="25" active="{{ orderActive }}" bind:change="onChange" animated sticky offset-top="{{ height }}" swipe-threshold="6">
+        <van-tab title="全部">
+          <order-list wx:for="{{orderData}}" wx:for-item="item" wx:for-index="idx" wx:key="id" order-data="{{item}}" />
+        </van-tab>
+        <van-tab title="已报备">
+          <order-list wx:for="{{orderData}}" wx:for-item="item" wx:for-index="idx" wx:key="id" order-data="{{item}}" />
+        </van-tab>
+        <van-tab title="已带看">
+          <order-list wx:for="{{orderData}}" wx:for-item="item" wx:for-index="idx" wx:key="id" order-data="{{item}}" />
+        </van-tab>
+        <van-tab title="已认购">
+          <order-list wx:for="{{orderData}}" wx:for-item="item" wx:for-index="idx" wx:key="id" order-data="{{item}}" />
+        </van-tab>
+        <van-tab title="已成交">
+          <order-list wx:for="{{orderData}}" wx:for-item="item" wx:for-index="idx" wx:key="id" order-data="{{item}}" />
+        </van-tab>
+        <van-tab title="已取消">
+          <order-list wx:for="{{orderData}}" wx:for-item="item" wx:for-index="idx" wx:key="id" order-data="{{item}}" />
+        </van-tab>
+      </van-tabs>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,69 @@
+<view class="build__list" data-buildid="{{buildDataitem.id}}" bindtap="buildListTap">
+  <view class="build__info">
+    <van-image width="38vw" height="13vh" fit="fill" src="{{buildDataitem.cover_image}}"/>
+    <view class="info__text">
+      <view class="text__one">
+        <text class="build__name">{{buildDataitem.name}}</text>
+      </view>
+      <view wx:if="{{buildDataitem.show_type==1}}"><text class="build__com_money">{{buildDataitem.average_price}}元/平</text></view>
+      <view wx:if="{{buildDataitem.show_type==2}}"><text class="build__com_money">{{buildDataitem.total_price}}万/套</text></view>
+      <view><text class="build__loc">{{buildDataitem.area.shortname}} {{buildDataitem.street.shortname}} / 建面：{{buildDataitem.build_area}}m²</text></view>
+       <view><text class="build__state">销售状态：{{state[buildDataitem.state-1]}}</text></view>
+    </view>
+  </view>
+
+        <view class="commission__label" wx:if="{{buildDataitem.build_commission_one!==null}}">
+          <view class="commission__pla">
+            <text style="border: 1px solid {{buildDataitem.build_commission_one.build_type.color}}; background:{{buildDataitem.build_commission_one.build_type.color}}" class="pla1">
+              白金会员
+            </text>
+            <text style="border: 1px solid {{buildDataitem.build_commission_one.build_type.color}}; color:{{buildDataitem.build_commission_one.build_type.color}}; background:{{buildDataitem.build_commission_one.build_type.color}}60" class="pla2" >
+              {{buildDataitem.build_commission_one.pt_member}}
+            </text>
+            <!-- <text style="border: 1px solid {{buildDataitem.build_commission_one.build_type.color}}; color:{{buildDataitem.build_commission_one.build_type.color}}; background:{{buildDataitem.build_commission_one.build_type.color}}60" class="pla2" wx:if="{{buildDataitem.build_commission_one.commission.level1.type==1}}">
+              {{buildDataitem.build_commission_one.commission.level1.com_percentage}}%
+            </text>
+            <text style="border: 1px solid {{buildDataitem.build_commission_one.build_type.color}}; color:{{buildDataitem.build_commission_one.build_type.color}}; background:{{buildDataitem.build_commission_one.build_type.color}}60" class="pla2" wx:if="{{buildDataitem.build_commission_one.commission.level1.type==2}}">
+              {{buildDataitem.build_commission_one.commission.level1.com_percentage}}%+{{buildDataitem.build_commission_one.commission.level1.bon_money}}元
+            </text>
+            <text style="border: 1px solid {{buildDataitem.build_commission_one.build_type.color}}; color:{{buildDataitem.build_commission_one.build_type.color}}; background:{{buildDataitem.build_commission_one.build_type.color}}60" class="pla2" wx:if="{{buildDataitem.build_commission_one.commission.level1.type==3}}">
+              {{buildDataitem.build_commission_one.commission.level1.com_percentage}}%+{{buildDataitem.build_commission_one.commission.level1.bon_percentage}}%
+            </text>
+            <text style="border: 1px solid {{buildDataitem.build_commission_one.build_type.color}}; color:{{buildDataitem.build_commission_one.build_type.color}}; background:{{buildDataitem.build_commission_one.build_type.color}}60" class="pla2" wx:if="{{buildDataitem.build_commission_one.commission.level1.type==4}}">
+              {{buildDataitem.build_commission_one.commission.level1.com_money}}元
+            </text>
+            <text style="border: 1px solid {{buildDataitem.build_commission_one.build_type.color}}; color:{{buildDataitem.build_commission_one.build_type.color}}; background:{{buildDataitem.build_commission_one.build_type.color}}60" class="pla2" wx:if="{{buildDataitem.build_commission_one.commission.level1.type==5}}">
+              {{buildDataitem.build_commission_one.commission.level1.com_money}}元+{{buildDataitem.build_commission_one.commission.level1.bon_percentage}}%
+            </text>
+            <text style="border: 1px solid {{buildDataitem.build_commission_one.build_type.color}}; color:{{buildDataitem.build_commission_one.build_type.color}}; background:{{buildDataitem.build_commission_one.build_type.color}}60" class="pla2" wx:if="{{buildDataitem.build_commission_one.commission.level1.type==6}}">
+              {{buildDataitem.build_commission_one.commission.level1.com_money}}元+{{buildDataitem.build_commission_one.commission.level1.bon_money}}元
+            </text> -->
+          </view>
+          <view class="commission__ord">
+            <text style="border: 1px solid {{buildDataitem.build_commission_one.build_type.color}}; background:{{buildDataitem.build_commission_one.build_type.color}}" class="ord1">
+              普通会员
+            </text>
+<text style="border: 1px solid {{buildDataitem.build_commission_one.build_type.color}}; color:{{buildDataitem.build_commission_one.build_type.color}}; background:{{buildDataitem.build_commission_one.build_type.color}}60" class="pla2">
+              {{buildDataitem.build_commission_one.com_member}}
+            </text>
+            <!-- <text style="border: 1px solid {{buildDataitem.build_commission_one.build_type.color}}; color:{{buildDataitem.build_commission_one.build_type.color}}; background:{{buildDataitem.build_commission_one.build_type.color}}60" class="pla2" wx:if="{{buildDataitem.build_commission_one.commission.level2.type==1}}">
+              {{buildDataitem.build_commission_one.commission.level2.com_percentage}}%
+            </text>
+            <text style="border: 1px solid {{buildDataitem.build_commission_one.build_type.color}}; color:{{buildDataitem.build_commission_one.build_type.color}}; background:{{buildDataitem.build_commission_one.build_type.color}}60" class="pla2" wx:if="{{buildDataitem.build_commission_one.commission.level2.type==2}}">
+              {{buildDataitem.build_commission_one.commission.level2.com_percentage}}%+{{buildDataitem.build_commission_one.commission.level2.bon_money}}元
+            </text>
+            <text style="border: 1px solid {{buildDataitem.build_commission_one.build_type.color}}; color:{{buildDataitem.build_commission_one.build_type.color}}; background:{{buildDataitem.build_commission_one.build_type.color}}60" class="pla2" wx:if="{{buildDataitem.build_commission_one.commission.level2.type==3}}">
+              {{buildDataitem.build_commission_one.commission.level2.com_percentage}}%+{{buildDataitem.build_commission_one.commission.level2.bon_percentage}}%
+            </text>
+            <text style="border: 1px solid {{buildDataitem.build_commission_one.build_type.color}}; color:{{buildDataitem.build_commission_one.build_type.color}}; background:{{buildDataitem.build_commission_one.build_type.color}}60" class="pla2" wx:if="{{buildDataitem.build_commission_one.commission.level2.type==4}}">
+              {{buildDataitem.build_commission_one.commission.level2.com_money}}元
+            </text>
+            <text style="border: 1px solid {{buildDataitem.build_commission_one.build_type.color}}; color:{{buildDataitem.build_commission_one.build_type.color}}; background:{{buildDataitem.build_commission_one.build_type.color}}60" class="pla2" wx:if="{{buildDataitem.build_commission_one.commission.level2.type==5}}">
+              {{buildDataitem.build_commission_one.commission.level2.com_money}}元+{{buildDataitem.build_commission_one.commission.level2.bon_percentage}}%
+            </text>
+            <text style="border: 1px solid {{buildDataitem.build_commission_one.build_type.color}}; color:{{buildDataitem.build_commission_one.build_type.color}}; background:{{buildDataitem.build_commission_one.build_type.color}}60" class="pla2" wx:if="{{buildDataitem.build_commission_one.commission.level2.type==6}}">
+              {{buildDataitem.build_commission_one.commission.level2.com_money}}元+{{buildDataitem.build_commission_one.commission.level2.bon_money}}元
+            </text> -->
+          </view>
+        </view>
+</view>

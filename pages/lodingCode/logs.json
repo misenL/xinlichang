@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "开发中",
+  "usingComponents": {
+    "nav-bar": "../../common/navbar/index"
+  }
+}

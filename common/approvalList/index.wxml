@@ -1,0 +1,52 @@
+<!--pages/approvalList/index.wxml-->
+<view class="approval__list">
+  <view class="list__number" bindtap="tapSeeInfo">
+    <text class="font-color-grey">订单编号：</text>
+    <text class="font-size-14" style="margin-right:auto">{{applistData.order_sn}}</text>
+    <text class="font-color-grey">查看详情</text>
+    <van-icon class="font-color-grey" slot="right-icon" name="arrow" /> 
+  </view>
+  <view class="list__content">
+    <view class="conten-grid">
+      <text class="font-color-grey">订单进度：</text>
+      <text class="font-size-14 font-color-red">{{speedArr[(applistData.order_state)/10]}}</text>
+      <text class="font-color-grey">审批进度：</text>
+      <text class="font-size-14 font-color-orange">{{examineArr[applistData.examine]}}</text>
+    </view>
+    <view class="conten-grid">
+      <text class="font-color-grey">客户姓名：</text>
+      <text class="font-size-14">{{applistData.order_report.customer_name}}</text>
+      <text class="font-color-grey">客户性别：</text>
+      <text class="font-size-14">{{applistData.order_report.customer_sex==1?'男':'女'}}</text>
+    </view>
+    <view class="conten-grid">
+      <text class="font-color-grey">手机号码：</text>
+      <text class="font-size-14">{{applistData.order_report.customer_phone}}</text>
+    </view>
+    <view class="conten-grid">
+      <text class="font-color-grey">驻场姓名：</text>
+      <text class="font-size-14">{{applistData.order_report.stay.real_name}}</text>
+      <text class="font-color-grey">认购楼盘：</text>
+      <text class="font-size-14">{{applistData.order_report.build.name}}</text>
+    </view>
+    <!-- <view class="conten-grid">
+      <text class="font-color-grey">{{dateTypeArr[(applistData.order_state)/10]}}时间：</text>
+      <text class="font-size-14" style="grid-column-start:2; grid-column-end:6">还没有</text>
+    </view> -->
+    <view class="list__button" wx:if="{{applistData.order_examine_one === null}}">
+      <view bindtap="tapReject">驳回</view>
+      <view bindtap="tapAgree" class="button__confirm">同意</view>
+    </view>
+    <view class="list__operation" wx:if="{{applistData.order_examine_one.examine_state == 2}}">
+      已同意
+    </view>
+    <view class="list__operation" wx:if="{{applistData.order_examine_one.examine_state == 3}}">
+      已驳回
+    </view>
+    <view class="list__button" wx:if="{{applistData.operation == 3}}">
+      <view>撤销</view>
+      <view class="button__submit">重新提交</view>
+    </view>
+  </view>
+  <van-toast id="van-toast" />
+</view>

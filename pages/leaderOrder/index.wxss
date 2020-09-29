@@ -1,0 +1,25 @@
+/* pages/leaderOrder/index.wxss */
+.container {
+  background: rgba(240, 245, 251, 1)
+}
+.van-tabs__scroll {
+  background-color: #ffca4a!important
+}
+.van-hairline--top-bottom:after {
+  border-width: 0 0!important;
+}
+.van-tabs__line {
+  bottom: 4px!important;
+}
+.van-tabs__wrap {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1)
+}
+.approval__tabs .van-tabs__scroll,
+.order__tabs .van-tabs__scroll {
+  background-color: #ffffff!important
+}
+.order__tabs .van-tabs__nav {
+  font-size: 13px
+}
+
+

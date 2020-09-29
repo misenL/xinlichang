@@ -1,0 +1,112 @@
+/* pages/orderInfoStationed/index.wxss */
+
+.container {
+  background: rgba(240, 245, 251, 1)
+}
+.font__color-grey {
+  color: rgba(0, 0, 0, 0.45);
+  justify-self: end;
+}
+.font__color-orange {
+  color: rgba(230, 126, 34, 1)
+}
+.font__color-red {
+  color: rgba(231, 76, 60, 1)
+}
+.font__color-blue {
+  color: rgba(0, 122, 255, 1)
+}
+.block__grid-4 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1.5fr;
+  align-self: center;
+  /* align-items: center; */
+  justify-self: start;
+}
+.block__grid-5 {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr 1fr 1fr;
+  align-self: center;
+  align-items: center;
+  justify-self: start;
+}
+.block__flex {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+.grid-across {
+  grid-column-start: 2;
+  grid-column-end: 5
+}
+.block__list-style {
+  padding: 6px 0;
+}
+.order__num {
+  padding: 10px 0;
+  margin: 0 16px;
+  border-bottom: 1px solid rgba(230, 230, 230, 1)
+}
+.order__num,
+.order__block {
+  background: rgba(255, 255, 255, 1);
+  font-size: 14px;
+}
+.info__style {
+  padding: 8px 0 12px 0;
+  margin-bottom: 8px;
+}
+.enclosure-image {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-row-gap: 8px;
+  grid-column-gap: 8px;
+  padding: 0 16px
+}
+.enclosure-image image {
+  width: 80px;
+  height: 80px;
+}
+.confirm__button {
+  font-size: 16px;
+  border-radius: 4px;
+  width: 320px;
+  height: 44px;
+  line-height: 44px;
+  text-align: center;
+  margin: 20px auto 40px;
+}
+.button__blue {
+  background: rgba(255, 255, 255, 1);
+  border: 1px solid rgba(0, 122, 255, 1);
+  color: rgba(0, 122, 255, 1);
+}
+.bottom__operation {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  text-align: center;
+  color: rgba(0, 0, 0, 0.65);
+  /* position: fixed;
+  bottom: 0; */
+  width: 100vw;
+  margin: 20px auto 40px;
+}
+.bottom__operation view {
+  border-radius: 4px;
+  height: 40px;
+  line-height: 40px;
+  width: 162px;
+  background: rgba(255, 255, 255, 1);
+}
+.button-red {
+  color: rgba(231, 76, 60, 1);
+  border: 1px solid rgba(248, 89, 89, 1);
+  background: rgba(255, 255, 255, 1);
+}
+.button-blue {
+  color: rgba(0, 122, 255, 1);
+  border: 1px solid rgba(0, 122, 255, 1);
+  background: rgba(255, 255, 255, 1);
+}

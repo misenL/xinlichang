@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "新立场",
+  "usingComponents": {
+    "nav-bar": "../../common/navbar/index",
+    "build-list": "../../common/buildList/index"
+  }
+}

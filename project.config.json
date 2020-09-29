@@ -1,0 +1,274 @@
+{
+	"description": "项目配置文件",
+	"packOptions": {
+		"ignore": []
+	},
+	"setting": {
+		"urlCheck": false,
+		"es6": true,
+		"enhance": false,
+		"postcss": true,
+		"preloadBackgroundData": false,
+		"minified": true,
+		"newFeature": true,
+		"coverView": true,
+		"nodeModules": true,
+		"autoAudits": false,
+		"showShadowRootInWxmlPanel": true,
+		"scopeDataCheck": false,
+		"uglifyFileName": false,
+		"checkInvalidKey": true,
+		"checkSiteMap": true,
+		"uploadWithSourceMap": true,
+		"compileHotReLoad": false,
+		"babelSetting": {
+			"ignore": [],
+			"disablePlugins": [],
+			"outputPath": ""
+		},
+		"useIsolateContext": true,
+		"useCompilerModule": false,
+		"userConfirmedUseCompilerModuleSwitch": false
+	},
+	"compileType": "miniprogram",
+	"libVersion": "2.11.1",
+	"appid": "wxa0a01067d8b1095b",
+	"projectname": "xinlichangwechat",
+	"debugOptions": {
+		"hidedInDevtools": []
+	},
+	"isGameTourist": false,
+	"simulatorType": "wechat",
+	"simulatorPluginLibVersion": {},
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"currentL": -1,
+			"list": []
+		},
+		"gamePlugin": {
+			"current": -1,
+			"list": []
+		},
+		"miniprogram": {
+			"current": -1,
+			"list": [
+				{
+					"id": -1,
+					"name": "pages/index/index",
+					"pathName": "pages/index/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/my/index",
+					"pathName": "pages/my/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/leadList/index",
+					"pathName": "pages/leadList/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 3,
+					"name": "pages/buildTrend/index",
+					"pathName": "pages/buildTrend/index",
+					"query": "id=59",
+					"scene": null
+				},
+				{
+					"id": 4,
+					"name": "pages/buildDetail/index",
+					"pathName": "pages/buildDetail/index",
+					"query": "buildid=128",
+					"scene": null
+				},
+				{
+					"id": 5,
+					"name": "pages/orderInfo/index",
+					"pathName": "pages/orderInfo/index",
+					"query": "states=1&&idType=1",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/leaderOrder/index",
+					"pathName": "pages/leaderOrder/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/leadList/index",
+					"pathName": "pages/leadList/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 8,
+					"name": "pages/reportOrder/index",
+					"pathName": "pages/reportOrder/index",
+					"query": "buildid=4",
+					"scene": null
+				},
+				{
+					"id": 9,
+					"name": "pages/houseDetail/index",
+					"pathName": "pages/houseDetail/index",
+					"query": "buildId=128&houseId=376",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/register/index",
+					"pathName": "pages/register/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/register/index",
+					"pathName": "pages/register/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/phoneLogin/index",
+					"pathName": "pages/phoneLogin/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "fx",
+					"pathName": "pages/index/index",
+					"query": "",
+					"scene": 1008
+				},
+				{
+					"id": -1,
+					"name": "pages/index/index",
+					"pathName": "pages/index/index",
+					"query": "",
+					"scene": 1044,
+					"shareInfo": {
+						"groupName": "测试模拟群0",
+						"shareName": "pGzljv3zpiyiwEkQ1lez-Rnk3ZYoLfgcQg-gWt0KRac@cr4dev",
+						"shareKey": "AisICJvOwbF1CI6yJXfdyUvRwMZ_8SUSi9Z7qW36TbBa5ueqnvJa_TERYLwXDg-RhpzZDs_cylnCcrIiITtB6g~~"
+					}
+				},
+				{
+					"id": 15,
+					"name": "fx2",
+					"pathName": "pages/buildDetail/index",
+					"query": "customer=0&scene=5&id=45&buildid=105",
+					"scene": 1044,
+					"shareInfo": {
+						"groupName": "测试模拟群0",
+						"shareName": "pGzljv3zpiyiwEkQ1lez-Rnk3ZYoLfgcQg-gWt0KRac@cr4dev",
+						"shareKey": "AisICJvOwbF1CI6yJXfdyUvRwMZ_8SUSi9Z7qW36TbBa5ueqnvJa_TERYLwXDg-RhpzZDs_cylnCcrIiITtB6g~~"
+					}
+				},
+				{
+					"id": 16,
+					"name": "fx3",
+					"pathName": "pages/houseDetail/index",
+					"query": "customer=0&scene=5&id=45&buildId=105&houseId=309",
+					"scene": 1044,
+					"shareInfo": {
+						"groupName": "测试模拟群0",
+						"shareName": "pGzljv3zpiyiwEkQ1lez-Rnk3ZYoLfgcQg-gWt0KRac@cr4dev",
+						"shareKey": "AisICJvOwbF1CI6yJXfdyUvRwMZ_8SUSi9Z7qW36TbBa5ueqnvJa_TERYLwXDg-RhpzZDs_cylnCcrIiITtB6g~~"
+					}
+				},
+				{
+					"id": -1,
+					"name": "pages/chooseCity/index",
+					"pathName": "pages/chooseCity/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/invite/index",
+					"pathName": "pages/invite/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/computed/index",
+					"pathName": "pages/computed/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/login/index",
+					"pathName": "pages/login/index",
+					"query": "share_id=58",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/buildDetail/index",
+					"pathName": "pages/buildDetail/index",
+					"query": "buildid=128",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/searchPage/index",
+					"pathName": "pages/searchPage/index",
+					"query": "search=新纪元",
+					"scene": null
+				},
+				{
+					"id": 23,
+					"name": "pages/buildDetail/index",
+					"pathName": "pages/buildDetail/index",
+					"query": "buildid=128&customer=0&scene=6&id=61",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/buildDetail/index",
+					"pathName": "pages/buildDetail/index",
+					"query": "buildid=128",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/buildDetail/index",
+					"pathName": "pages/buildDetail/index",
+					"query": "buildid=122",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": " 群聊会话中的小程序消息卡片",
+					"pathName": "pages/buildDetail/index",
+					"query": "customer=0&scene=6&id=43&buildid=40",
+					"scene": 1008
+				}
+			]
+		}
+	}
+}

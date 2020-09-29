@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "楼盘动态",
+  "usingComponents": {
+    "bottom-sticky": "../../common/bottomSticky/index",
+    "nav-bar": "../../common/navbar/index"
+  }
+}

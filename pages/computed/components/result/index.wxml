@@ -1,0 +1,55 @@
+<!--pages/computed/components/result/index.wxml-->
+
+  <view class="infoDialog" id="infoDialog" style="padding-top: {{ height }}px">
+        <view class="infoinner">
+            <view class="infotop topjianbian">
+                <view class="cal_nav displayflex">
+                    <view class="cal_changenav outer_bx flexli  {{type == 0 ? 'current' : '' }}" bindtap="showType" data-type="0" data-name="benxi">等额本息</view>
+                    <view class="cal_changenav outer_bx flexli  {{type == 1 ? 'current' : '' }}" bindtap="showType" data-type="1" data-name="benjin">等额本金</view>
+                </view>
+                <view class="infototal displayflex">
+                    <view class="infotli flexli">
+                        <view class="name">还款总额(万)</view>
+                        <view class="price" id="totalPrice">{{computedResult.result.totalPrice}}</view>
+                    </view>
+                    <view class="infotli flexli">
+                        <view class="name">总利息(万)</view>
+                        <view class="price" id="totalLixi">{{computedResult.result.totalLixi}}</view>
+                    </view>
+                    <view class="infotli flexli">
+                        <view class="name">贷款总额(万)</view>
+                        <view class="price" id="totalDknum">{{computedResult.result.totalDknum}}</view>
+                    </view>
+                    <view class="infotli flexli">
+                        <view class="name">贷款期限</view>
+                        <view class="price" id="totalyear">{{computedResult.result.year}}</view>
+                    </view>
+                </view>
+            </view>
+
+            <view class="tablenav">
+                <view class="tablenavinner displayflex">
+                    <view class="fixtitle flexli">期次</view>
+                    <view class="fixtitle flexli">每月本金</view>
+                    <view class="fixtitle flexli">每月利息</view>
+                    <view class="fixtitle flexli">剩余还款</view>
+                </view>
+            </view>
+            <!-- 循环展示出来 -->
+            <view class="yearouter" id="yearouter">
+                 <view class="oneyear" wx:for="{{computedResult.result.mouthdataArray}}" wx:for-item="item" wx:for-index="idx" wx:key="id" >
+                    <view class="yeartitle">第{{item.year}}年</view>
+                    <view class="mounths">
+                        <view class="mouthli displayflex border_bottom" wx:for="{{item.data}}" wx:for-item="data" wx:for-index="key" wx:key="key">
+                            <view class="mouthtd flexli" > <span>{{data.monthName}}</span> </view>
+                            <view class="mouthtd flexli" > <span>{{data.yuelixi}}  </span> </view>
+                            <view class="mouthtd flexli" > <span>{{data.yuebenjin}}</span> </view>
+                            <view class="mouthtd flexli" > <span>{{data.leftFund}} </span> </view>
+                        </view>
+                    </view>
+                 </view>
+            </view>
+        </view>
+    </view>
+
+    <view class="brack" bindtap="showResult">返回</view>

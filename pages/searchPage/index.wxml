@@ -1,0 +1,16 @@
+<!--index.wxml-->
+<!-- 引入自定义导航 -->
+<nav-bar navbar-data='{{nvabarData}}'></nav-bar>
+
+<view class="container" style="margin-top: {{ height }}px">
+  <van-sticky offset-top="{{height}}">
+    <van-search value="{{ search }}" placeholder="搜索楼盘、房型" background="#ffca4a" bind:clear="onSearchClear" bind:search="onSearch" bind:change="onChange" />
+  </van-sticky>
+  <view class="search__none" wx:if='{{pageData.length === 0}}'>
+    <image src="../../assets/images/noneSearch.png"></image>
+    <text>找不到相关楼盘，请重新搜索</text>
+  </view>
+  <view wx:else>
+    <build-list wx:for="{{pageData}}" wx:for-item="item" wx:for-index="idx" wx:key="id" build-dataitem="{{item}}" />
+  </view>
+</view>

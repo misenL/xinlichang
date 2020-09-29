@@ -1,0 +1,175 @@
+<!-- buildDetail.wxml -->
+<!-- 引入自定义导航 -->
+<nav-bar navbar-data='{{nvabarData}}'></nav-bar>
+<view class="container" style="margin-top: {{ height }}px">
+  <view class="build__detail">
+    <view class="build__info">
+      <!-- 轮播图 -->
+      <view class="banner">
+        <swiper style="height:210px" indicator-dots="{{true}}" indicator-color="{{indicaColor}}" indicator-active-color="{{activeColor}}" autoplay="{{true}}">
+          <swiper-item wx:for="{{buildDetailData.slides_image}}" wx:for-item="item" wx:for-index="idx" wx:key="id">
+            <image src="{{item}}" class="slide_imag" />
+          </swiper-item>
+        </swiper>
+      </view>
+      <!-- 信息 -->
+      <view style="padding:15px">
+        <view class="build__name">
+          <text>{{buildDetailData.name}}</text>
+        </view>
+        <view class="build__info-flex mar__top-10">
+          <view class="">
+            <text class="list__name">参考价格（均价/总价）</text>
+            <text class="text__color-red" wx:if="{{buildDetailData.show_type==1}}">
+              {{buildDetailData.average_price}}元/平
+            </text>
+            <text class="text__color-red" wx:if="{{buildDetailData.show_type==2}}">
+              {{buildDetailData.total_price}}万/套
+            </text>
+          </view>
+          <view class="info__one info__two-width">
+            <text class="list__name">建面</text>
+            <text class="text__color-red">{{buildDetailData.build_area}}m²</text>
+          </view>
+        </view>
+        <view class="build__info-flex mar__top-10">
+          <view>
+            <text class="list__name">类型：</text>
+            <text>{{buildDetailData.house_type[0].data[0].build_type.name}}</text>
+          </view>
+          <view class="info__two-width">
+            <text class="list__name">户型：</text>
+            <text>{{buildDetailData.house_type_name}}</text>
+          </view>
+        </view>
+        <view class="build__info-flex mar__top-10">
+          <view>
+            <text class="list__name">结构：</text>
+            <text>{{buildDetailData.architecture_type}}</text>
+          </view>
+          <view style="width: 50vw" class="info__two-width">
+            <text class="list__name">开盘：</text>
+            <text>{{buildDetailData.start_time}}</text>
+          </view>
+        </view>
+        <view class="build__info-flex mar__top-10">
+          <view>
+            <text class="list__name">地址：</text>
+            <!-- <text>{{buildDetailData.area.shortname}}{{buildDetailData.sell_address}}</text> -->
+            <text>{{buildDetailData.sell_address}}</text>          
+          </view>
+          <view>
+            <text class="list__name"></text>
+            <text></text>
+          </view>
+        </view>
+        <view class="build__info-flex mar__top-10" bindtap="tapGoMore">
+          <view class="build__info-flex">
+            <text class="list__name">更多：</text>
+            <text class="text__inhidden">产权年限、装修标准、开发商...</text>
+          </view>
+          <view>
+            <image src="../../assets/icon/arrowRight.png"></image>
+          </view>
+        </view>
+      </view>
+    </view>
+    <!-- 佣金方案tabs -->
+    <view class="detail__tabs">
+      <van-sticky offset-top="{{ height }}">
+        <van-tabs swipe-threshold="4" color="rgba(245, 166, 35, 1)" line-width="25" swipeable="true" animated="true" active="{{ active }}" bind:click="onclick">
+          <van-tab title="佣金方案" wx:show="{{userType != 0}}"></van-tab>
+          <van-tab title="户型介绍"></van-tab>
+          <van-tab title="周边配套"></van-tab>
+          <van-tab title="楼盘动态"></van-tab>
+        </van-tabs>
+      </van-sticky>
+    </view>
+    <!-- 佣金方案 -->
+    <view class="build__commission" wx:if="{{userType != 0}}">
+      <text class="commission__est">佣金方案</text>
+      <view class="commission__tag" wx:for="{{buildDetailData.build_commission}}" wx:for-item="item" wx:for-index="idx" wx:key="id">
+        <view class="commission__title">
+          <text style="width:14vw;">{{item.build_type.name}}：</text>
+          <text>{{item.project_name}}</text>        
+        </view>
+        <view class="commission__label">
+          <view class="commission__pla">
+            <text style="border: 1px solid {{item.build_type.color}}; background:{{item.build_type.color}}" class="pla1">
+              白金会员
+            </text>
+            <text style="border: 1px solid {{item.build_type.color}}; color:{{item.build_type.color}}; background:{{item.build_type.color}}60" class="pla2">
+              {{item.pt_member}}
+            </text>
+          </view>
+          <view class="commission__ord">
+            <text style="border: 1px solid {{item.build_type.color}}; background:{{item.build_type.color}}" class="ord1">
+              普通会员
+            </text>
+            <text style="border: 1px solid {{item.build_type.color}}; color:{{item.build_type.color}}; background:{{item.build_type.color}}60" class="pla2">
+              {{item.com_member}}
+            </text>
+          </view>
+        </view>
+        <view class="commission__remark">{{item.remark}}</view>
+      </view>
+    </view>
+    <!-- 户型介绍 -->
+    <view class="house__introduce">
+      <view class="list__top" bindtap="tapGoAllHouse">
+        <view style="font-size:18px">户型介绍</view>
+        <view>
+          <text>全部户型</text>
+          <image src="../../assets/icon/arrowRight.png"></image>
+        </view>
+      </view>
+      <view class="house__tabs">
+        <van-tabs swipe-threshold="4" color="rgba(139, 87, 42, 1)" line-width="25" swipeable="true" animated="true" active="{{ houseActive }}" bind:click="houseOnclick">
+          <van-tab title="{{item.name}}({{item.nums}})" wx:for="{{buildDetailData.house_type}}" wx:for-item="item" wx:for-index="idx" wx:key="id"></van-tab>
+        </van-tabs>
+      </view>
+      <view class="house__list">
+        <scroll-view bindscroll="scroll" scroll-left="{{scrollLeft}}" scroll-with-animation="true" scroll-x="true" style="width: 100%">
+          <block wx:for="{{buildDetailData.house_type}}" wx:for-item="item" wx:for-index="idx" wx:key="id">
+            <house-introduce id="H1" wx:for="{{item.data}}" wx:for-item="itemLi" wx:for-index="idx" wx:key="id" class="scroll__list" hintroduce-data='{{itemLi}}' />
+          </block>
+        </scroll-view>
+      </view>
+    </view>
+    <!-- 地铁位置 -->
+    <view class="map__around" wx:if="{{buildDetailData.map!==''}}">
+      <view class="map__title">
+        <text>位置及周边配套</text>
+        <view class="title__right" bindtap="toOpenLocation">
+          <text>查看导航</text>
+          <image src="../../assets/icon/arrowRight.png"></image>
+        </view>
+      </view>
+      <view class="house__map" >
+        <text>{{buildDetailData.nearby}}</text>
+        <!-- <map id="map" longitude="{{buildDetailData.map[1]||113.324520}}" latitude="{{buildDetailData.map[0]||23.099994}}" scale="14" style="width: 100%; height: 211px;"></map> -->
+      </view>
+      <!-- <view class="map__explain">{{buildDetailData.buildDetailData}}</view> -->
+    </view>
+    <!-- 动态2231 -->
+    <view class="build__trend">
+      <view class="trend__title">
+        <text>楼盘动态 ({{buildDetailData.build_trends_count}})</text>
+        <view class="title__right" bindtap="toBuildTrend">
+          <text>查看全部</text>
+          <image src="../../assets/icon/arrowRight.png"></image>
+        </view>
+      </view>
+      <view class="trend__ul">
+        <view class="trend__li" wx:for="{{buildDetailData.build_trends}}" wx:for-item="item" wx:for-index="idx" wx:key="id">
+          <text class="li__content">{{item.synopsis}}</text>
+          <view class="li__info">
+            <text class="info__type">{{item.trends.name}}</text>
+            <text class="info__time">{{item.trends.created_at}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+<bottom-sticky bsticky-data='{{bstickyData}}' />

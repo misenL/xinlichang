@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "van-action-sheet": "@vant/weapp/action-sheet/index"
+  }
+}

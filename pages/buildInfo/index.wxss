@@ -1,0 +1,56 @@
+/* buildInfo */
+
+.container {
+  background: rgba(240, 245, 251, 1);
+  height: auto;
+  min-height: auto;
+}
+.detail__tabs {
+  position: fixed;
+  width: 100%;
+  z-index: 999;
+}
+.detail__info {
+  padding-top: 48px;
+  margin-bottom: 10vh;
+}
+.base__info,
+.sale__info,
+.estate__info,
+.licence__info {
+  background: #ffffff;
+  font-size: 18px;
+  color: rgba(0, 0, 0, 1);
+  padding: 12px 15px;
+}
+.sale__info,
+.estate__info,
+.licence__info {
+  margin-top: 8px;
+}
+.info__list {
+  font-size: 14px;
+  margin: 10px 0;
+  display: grid;
+  grid-template-columns: 2fr 6fr 1fr;
+  align-items: center;
+}
+.info__list .list__name {
+  color: rgba(0, 0, 0, 0.45);
+  width: 21vw;
+}
+.info__list .list__content {
+  width: 65vw;
+}
+.info__list image {
+  width: 28px;
+  height: 28px;
+  margin-right: 10px;
+}
+
+/* .info__test {
+  height: 500px;
+  background: #fe5241;
+  padding: 15px;
+  
+} */

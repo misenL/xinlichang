@@ -1,0 +1,94 @@
+<!-- bottomSticky -->
+<view class="bottom__sticky " >
+<!-- 内部人员 -->
+  <view class="sticky__content {{bstickyData.call != false ? '' : 'callNone'}}"  wx:if="{{bstickyData.customer != 0}}">
+    <view class="sticky__tell" wx:if="{{bstickyData.call != false}}" bindtap="clickSite">
+      <image src="../../assets/icon/tell.png" />
+      <text>联系驻场</text>
+    </view>
+    <view class="sticky__down" bindtap="formSubmit" wx:if="{{bstickyData.saveposter != false}}">
+      <image src="../../assets/icon/bottomDown.png" wx:if="{{bstickyData.call != false}}" />
+      <text>保存海报</text>
+    </view>
+    <button open-type="share" class="sticky__share" bindtap="onShareAppMessage">
+      <image src="../../assets/icon/share.png"  wx:if="{{bstickyData.call != false}}"/>
+      <text>分享给客户</text>
+    </button >
+    <van-action-sheet show="{{ houseData.showSheet }}" bind:close="onClose">
+      <view class="site__view">
+        <text class="site__title">联系驻场人员</text>
+        <view class="site__ul">
+          <view class="site__li" bindtap="clickTel" data-item="{{item}}" wx:for="{{siteTell}}" wx:for-item="item" wx:for-index="idx" wx:key="id">
+            <text class="li__name">{{item.member.real_name}}</text>
+            <text class="li__tell">{{item.member.phone}}</text>
+            <image src="../../assets/icon/arrowRight.png"></image>
+          </view>
+        </view>
+        <view class="site__close" bindtap="onClose">取消</view>
+      </view>
+    </van-action-sheet>
+    <view class="canvas__page" style="height:{{580*canvasUnit}}px" hidden="{{maskHidden == false}}" catchtouchmove="canvasMove">
+      <view style="width:{{253*canvasUnit}}px;height:{{450*canvasUnit}}px" class="create__img">
+        <image wx:if="{{imagePath}}" src="{{imagePath}}" class='create' />
+      </view>
+      <view class="canvas__button">
+        <button class='baocun' bindtap='quxiao'>取消</button>
+        <button class='baocun button__style' bindtap='baocun'>保存</button>
+      </view>
+      <view>
+        <canvas style="width:{{375*canvasUnit}}px;height:{{667*canvasUnit}}px" canvas-id="mycanvas"></canvas>
+      </view>
+    </view>
+  </view>
+<!-- 客户 -->
+  <view class="sticky__content" wx:else>
+    <view class="sticky__tell" style="padding-top: 10px">
+      <image style="border-radius: 50px" src="{{userData.avatarUrl}}" />
+      <text>{{userData.real_name}}</text>
+    </view>
+    <view class="sticky__down" bindtap="tapService">
+      <view>免费咨询</view>
+    </view>
+    <button open-type="getUserInfo" class="sticky__share" bindgetuserinfo="tapGetUser">
+    <!-- <button open-type="getPhoneNumber" class="sticky__share" bindgetphonenumber="tapGetPhone">     -->
+      <view>报名看房</view>
+    </button >
+    <van-action-sheet show="{{ houseData.showSheet }}" bind:close="onClose">
+      <view class="site__view">
+        <text class="site__title">联系驻场人员</text>
+        <view class="site__ul">
+          <view class="site__li" bindtap="clickTel" data-item="{{item}}" wx:for="{{siteTell}}" wx:for-item="item" wx:for-index="idx" wx:key="id">
+            <text class="li__name">{{item.member.real_name}}</text>
+            <text class="li__tell">{{item.member.phone}}</text>
+            <image src="../../assets/icon/arrowRight.png"></image>
+          </view>
+        </view>
+        <view class="site__close" bindtap="onClose">取消</view>
+      </view>
+    </van-action-sheet>
+    <view class="canvas__page" style="height:{{580*canvasUnit}}px" hidden="{{maskHidden == false}}" catchtouchmove="canvasMove">
+      <view style="width:{{253*canvasUnit}}px;height:{{450*canvasUnit}}px" class="create__img">
+        <image src="{{imagePath}}" class='create' />
+      </view>
+      <view class="canvas__button">
+        <button class='baocun' bindtap='quxiao'>取消</button>
+        <button class='baocun button__style' bindtap='baocun'>保存</button>
+      </view>
+      <view>
+        <canvas style="width:{{375*canvasUnit}}px;height:{{667*canvasUnit}}px" canvas-id="mycanvas"></canvas>
+      </view>
+    </view>
+  </view>
+</view>
+<!-- 弹出框 -->
+  <van-dialog
+    use-slot
+    show="{{ showDialog }}"
+    show-cancel-button
+    confirm-button-open-type="getPhoneNumber"
+    bind:close="onCloseDialog"
+    bind:getphonenumber="tapGetPhone"
+  >
+    <view class="dialog__text">请点击确认拨打手机号码</view>
+  </van-dialog>
+

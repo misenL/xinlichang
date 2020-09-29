@@ -1,0 +1,39 @@
+<!-- houseList.wxml -->
+<!-- 引入自定义导航 -->
+<nav-bar navbar-data='{{nvabarData}}'></nav-bar>
+<view class="container" style="margin-top: {{ height }}px">
+  <view class="house__list">
+    <view class="list__tabs">
+      <van-tabs bind:click="selectTab" sticky active="{{ active }}" offset-top="{{height}}" swipe-threshold="4" color="rgba(245, 166, 35, 1)" line-width="25" swipeable="true" animated="true">
+        <van-tab title="全部动态">
+          <view class="trend__ul">
+            <view class="trend__li" wx:for="{{trendData}}" wx:for-item="item" wx:for-index="idx" wx:key="id">
+              <view class="li__info">
+                <text class="info__type">{{item.trends.name}}</text>
+                <text class="info__time">{{item.created_at}}</text>
+              </view>
+              <text class="li__title">{{item.title}}</text>
+              <text class="li__content">{{item.synopsis}}</text>
+            </view>
+          </view>
+        </van-tab>
+
+        <van-tab title="{{t_item.name}}({{t_item.build_trends_count}})" wx:for="{{trendsInfo}}" wx:for-item="t_item" wx:for-index="t_index" wx:key="t_index">
+          <view class="trend__ul">
+            <view class="trend__li" wx:for="{{trendData}}" wx:for-item="item" wx:for-index="idx" wx:key="id">
+              <view class="li__info">
+                <text class="info__type">{{item.trends.name}}</text>
+                <text class="info__time">{{item.created_at}}</text>
+              </view>
+              <text class="li__title">{{item.title}}</text>
+              <text class="li__content">{{item.synopsis}}</text>
+              <view class="li_content_images">
+                <image bindtap="zoomImages" data-image="{{value}}" data-images="{{item.images}}" wx:for="{{item.images}}" mode="aspectFit"  wx:for-item="value" wx:key="value" src="{{value}}"></image>
+              </view>
+            </view>
+          </view>
+        </van-tab>
+      </van-tabs>
+    </view>
+  </view>
+</view>

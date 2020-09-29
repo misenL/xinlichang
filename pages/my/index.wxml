@@ -1,0 +1,107 @@
+<!-- pages/my/index.wxml -->
+<!-- 我的 -->
+<view class="container" style="margin-top: {{ height }}px">
+    <view class="my_title">
+        <view class="info_box" bindtap="toModify">
+            <view class="info_left">
+                <van-image round width="56px" height="56px" src="{{userInfo.avatarUrl}}" />
+                <view class="info_content">
+                    <view class="user_name">{{userInfo.real_name}}</view>
+                    <view class="user_tag" wx:if="{{userInfo.level == 1}}">普通会员</view>
+                    <view class="user_tag platinum" wx:if="{{userInfo.level == 2}}">白金会员</view>
+                </view>
+            </view>
+            <view class="info_rigth">
+                <van-icon name="arrow" size="20px" color="#9699A6" />
+            </view>
+        </view>
+    </view>
+    
+    <view class="main">
+        <view class="cell_box">
+            <van-cell title="我的微信" is-link value="{{wechat?wechat : '点击绑定'}}" bindtap="tapRelaWechat">
+                <view slot="icon">
+                    <view class="imag">
+                        <image src="../../assets/images/weixin.png" />
+                    </view>
+                </view>
+            </van-cell>
+            <van-cell title="手机号码" is-link value="{{userInfo.phone}}">
+                <view slot="icon">
+                    <view class="imag">
+                        <image src="../../assets/images/phone.png" />
+                    </view>
+                </view>
+            </van-cell>
+        </view>
+        <view class="cell_box">
+            <van-cell title="我的订单" is-link bind:click="tapToOrder">
+                <view slot="icon">
+                    <view class="imag">
+                        <image src="../../assets/images/order.png" />
+                    </view>
+                </view>
+            </van-cell>
+            <van-cell title="潜在客户" is-link value="{{userInfo.customer_count}}" bind:click="toLeadList">
+                <view slot="icon">
+                    <view class="imag">
+                        <image src="../../assets/images/kehu.png" />
+                    </view>
+                </view>
+            </van-cell>
+        </view>
+        <view class="cell_box">
+            <van-cell title="邀请注册" center use-label-slot>
+                <view class="contact__view" slot="right-icon">
+                 <!-- bindcontact="onShareAppMessage" open-type="share"-->
+                    <button class="contact__customer"  bindtap="toInvite">
+                        邀好友注册经纪人
+                    </button>
+                    <van-icon name="arrow" color="#969799" />
+                </view>
+                <view slot="icon">
+                    <view class="imag">
+                        <image src="../../assets/images/invitation.png" />
+                    </view>
+                </view>
+            </van-cell>
+            <van-cell title="联系客服" center use-label-slot>
+                <view class="contact__view" slot="right-icon">
+                    <button class="contact__customer" open-type="contact" bindcontact="handleContact">
+                        在线咨询
+                    </button>
+                    <van-icon name="arrow" color="#969799" />
+                    <!-- <image src="../../assets/icon/arrowRight.png" /> -->
+                </view>
+                <view slot="icon">
+                    <view class="imag">
+                        <image src="../../assets/images/new.png" />
+                    </view>
+                </view>
+            </van-cell>
+            <van-cell bind:click="clickCustomerTel" title="客服电话" is-link value="{{userInfo.platform_phone}}">
+                <view slot="icon">
+                    <view class="imag">
+                        <image src="../../assets/images/kefu.png" />
+                    </view>
+                </view>
+            </van-cell>
+        </view>
+        <view class="cell_box">
+            <view class="button__cut" bindtap="tapCut">切换账号</view>
+        </view>
+    </view>
+    <van-popup show="{{ pop_show }}" bind:close="onClose">
+        <view class="pop_box">
+            <view class="pop_title">是否授权绑定?</view>
+            <view class="btn_box">
+                <button class="pop_btn" bindtap="onClose">取消</button>
+                <button class="confirm_btn" open-type="getUserInfo" bindtap="onClose" bindgetuserinfo="toBinding">
+                    确定
+                </button>
+            </view>
+        </view>
+    </van-popup>
+    <van-toast id="van-toast" />
+    <van-dialog id="van-dialog" />
+</view>

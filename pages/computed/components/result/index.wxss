@@ -1,0 +1,16 @@
+/* pages/computed/components/result/index.wxss */
+@import "../../index.wxss";
+
+.brack{
+  position: fixed;
+  right: 1%;
+  top: 36%;
+  z-index: 9999;
+  background: rgb(228, 11, 11);
+  color: #ffffff;
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 100rpx;
+  text-align: center;
+  line-height: 100rpx;
+}

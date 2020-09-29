@@ -1,0 +1,159 @@
+/* pages/my/index.wxss */
+.container {
+    background: #F0F5FB;
+}
+
+.my_title {
+    width: 100%;
+    height: 168px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    background-color: rgb(255, 202, 74);
+    /* background: linear-gradient(180deg, rgba(254, 218, 116, 1) 0%, rgba(255, 202, 74, 1) 100%); */
+}
+
+.info_box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 16px 16px 20px;
+    box-sizing: border-box;
+}
+
+.info_left {
+    display: flex;
+    align-items: center;
+}
+
+.info_content {
+    margin-left: 8px;
+}
+
+.user_name {
+    font-size: 16px;
+    margin-bottom: 4px;
+}
+
+.user_tag {
+    width: 68px;
+    height: 24px;
+    background: rgba(255, 255, 255, 0.45);
+    border-radius: 12px;
+    border: 1px solid rgba(139, 87, 42, 0.65);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 11px;
+    color: #8B572A;
+}
+
+.platinum {
+    background: rgba(255, 255, 255, 0.85);
+}
+
+.cell_box {
+    margin-bottom: 8px;
+}
+
+
+.imag {
+    width: 25px;
+    height: 25px;
+    /* width: 21px;
+    height: 21px; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.van-cell__title {
+    display: flex;
+    align-items: center;
+}
+
+.imag image {
+    width: 100%;
+    height: 100%;
+}
+
+.pop_box {
+    width: 250px;
+    height: 120px;
+    padding: 20px 30px;
+    box-sizing: border-box;
+    background: #fff;
+}
+
+.pop_title {
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 14px;
+    color: #333;
+}
+
+.btn_box {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.pop_btn {
+    width: 60px;
+    height: 30px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #ccc;
+    background: #fff;
+    font-size: 14px;
+}
+
+.confirm_btn {
+    width: 60px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    background: #333;
+    color: #fff;
+    font-size: 14px;
+}
+
+.contact__view {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.contact__customer {
+    width: 100px;
+    height: 30px;
+    line-height: 30px;
+    font-size: 14px;
+    color: #969799;
+    background: none;
+    padding: 0;
+    text-align: right;
+}
+
+.contact__customer::after {
+    border: none;
+}
+
+.contact__view image {
+    width: 28px;
+    height: 28px;
+    margin-left: 5px;
+}
+
+.button__cut {
+    height: 44px;
+    line-height: 44px;
+    width: 100vw;
+    text-align: center;
+    background: #fff;
+    font-size: 14px;
+}

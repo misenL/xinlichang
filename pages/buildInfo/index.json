@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "楼盘信息",
+  "usingComponents": {
+    "nav-bar": "../../common/navbar/index",
+    "bottom-sticky": "../../common/bottomSticky/index"
+  }
+}

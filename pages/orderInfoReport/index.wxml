@@ -1,0 +1,52 @@
+<!--pages/orderInfoReport/index.wxml-->
+<!-- 引入自定义导航 -->
+<nav-bar navbar-data='{{nvabarData}}'></nav-bar>
+<view class="container" style="margin-top: {{ height }}px">
+  <!-- 客户信息 -->
+  <view class="order__block">
+    <view class="order__num">
+      <text class="font__color-grey">订单编号：</text>
+      <text>1321314123217968</text>
+    </view>
+    <view class="info__style">
+      <view class="block__grid-4 block__list-style">
+        <text class="font__color-grey">订单进度：</text>
+        <text class="font__color-orange grid-across">报备</text>
+      </view>
+      <view class="block__grid-4 block__list-style">
+        <text class="font__color-grey">客户姓名：</text>
+        <text>潘怡逸</text>
+        <text class="font__color-grey">客户性别：</text>
+        <text>女</text>
+      </view>
+      <view class="block__grid-4 block__list-style">
+        <text class="font__color-grey">手机号码：</text>
+        <text class="grid-across">15920494065</text>
+      </view>
+      <view class="block__grid-4 block__list-style">
+        <text class="font__color-grey">经纪姓名：</text>
+        <text>孔万燕</text>
+        <text class="font__color-grey">报备状态：</text>
+        <text class="{{reportType==0?'font__color-red':'font__color-blue'}}">待确认</text>
+      </view>
+      <view class="block__grid-4 block__list-style">
+        <text class="font__color-grey">楼盘名称：</text>
+        <text class="grid-across">龙华金茂府</text>
+      </view>
+      <view class="block__grid-4 block__list-style">
+        <text class="font__color-grey">楼盘区域：</text>
+        <text class="grid-across">深圳市  龙华区</text>
+      </view>
+      <view class="block__grid-4 block__list-style">
+        <text class="font__color-grey">报备时间：</text>
+        <text class="grid-across font__color-red">2016年11月15日  21:30</text>
+      </view>
+      <view class="block__grid-4 block__list-style">
+        <text class="font__color-grey">报备备注：</text>
+        <text class="grid-across">/</text>
+      </view>
+    </view>
+  </view>
+  <view wx:if="{{reportType==0}}" class="confirm__buttom">确认报备</view>
+  <view wx:if="{{reportType==1}}" class="confirm__buttom color-blue">下一步（带看）</view>
+</view>

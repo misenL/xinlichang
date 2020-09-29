@@ -1,0 +1,25 @@
+<view class="house__list" bindtap="tapHouse">
+  <view class="house__info">
+    <van-image width="38vw" height="13vh" fit="fill" src="{{houseData.cover_image}}"/>
+    <view class="info__text">
+      <view class="text__one">
+        <text class="house__name">{{houseData.house_type.name}}{{houseData.office}}厅{{houseData.kitchen}}厨{{houseData.toilet}}卫</text>
+        <van-tag wx:if="{{houseData.state===1}}">未开盘</van-tag>
+        <van-tag wx:if="{{houseData.state===2}}" type="primary">在售</van-tag>
+        <van-tag wx:if="{{houseData.state===3}}" >售罄</van-tag>
+      </view>
+      <view><text class="house__money">约{{houseData.money}}万/套</text></view>
+      <view><text class="house__loc">建面：{{houseData.area}}㎡ / {{houseData.direction}}</text></view>
+    </view>
+  </view>
+  <view class="house__commission" wx:if='{{houseData.isType}}'>
+    <view class="commission__pla">
+      <text class="pla1">白金会员</text>
+      <text class="pla2">21%</text>
+    </view>
+    <view class="commission__ord">
+      <text class="ord1">普通会员</text>
+      <text class="ord2">10000元</text>
+    </view>
+  </view>
+</view>

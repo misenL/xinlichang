@@ -1,0 +1,11 @@
+<!--pages/computed/index.wxml-->
+<nav-bar navbar-data='{{nvabarData}}'></nav-bar>
+<!-- 选择贷款类型等 -->
+  
+<cindex wx:if="{{!result}}" bindmyevent="showResult" id="computed_result"/>
+<!-- 显示结果 -->
+<result wx:else bindmyevent="showResult" computedResult="{{computed_result}}"/>
+
+      
+
+    

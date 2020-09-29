@@ -1,0 +1,31 @@
+/**index.wxss**/
+/* 制定样式 */
+.van-search__content {
+  border-radius: 8px!important
+}
+.van-search__content {
+  background: #ffffff!important;
+}
+.container {
+  background: #ffffff;
+  min-height: auto!important;
+}
+.con__over {
+  overflow-y: hidden;
+}
+.search__none {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 130px;
+}
+.search__none image {
+  width: 96px;
+  height: 96px;
+}
+.search__none text {
+  color: rgba(0, 0, 0, 0.65);
+  font-size: 13px;
+  margin-top: 5px;
+}
